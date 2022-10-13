@@ -1,20 +1,25 @@
 
 let calcButton = document.getElementById('calcButton')
 
-let gerbResultElement = document.getElementById('gerbResult');
-let gerbResult = Number(gerbResultElement.textContent);
-
-console.log(gerbResult);
 
 calcButton.addEventListener('click', (e) => {
-
     e.preventDefault();
-    calculate();
-    
 
+    let gerbResult = document.getElementById("gerbResult").value;
+    let itnResult = document.getElementById("ITNResult").value;
+
+    let dbResult = document.getElementById("dbResult").value;
+    let vazrazhdaneResult = document.getElementById("vazrazhdaneResult").value;
+    
+    let bgvazhodResult = document.getElementById("bgvazhodResult").value;
+    let ppResult = document.getElementById("ppResult").value;
+    
+    let dps = document.getElementById("dps").value;
+
+    calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dps)
 });
 
-function calculate(gerbResult, itnResult){
-    console.log('test');
+function calculate(resultOne, resultTwo, resultThree, resultFour, resultFive, resultSix, resultSeven){
+
 }
 
