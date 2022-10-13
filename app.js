@@ -1,5 +1,6 @@
 
-let calcButton = document.getElementById('calcButton')
+let calcButton = document.getElementById('calcButton');
+let resetButton = document.getElementById('resetButton');
 let numberOfSeats = 240;
 
 calcButton.addEventListener('click', (e) => {
@@ -19,13 +20,23 @@ calcButton.addEventListener('click', (e) => {
     let dps = document.getElementById("dpsResult").value;
 
     calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dps)
-
     document.querySelector('.input').style.display = 'none';
     document.querySelector('.result').style.display = 'inline';
+
 });
 
-function calculate(resultOne, resultTwo, resultThree, resultFour, resultFive, resultSix, resultSeven){
 
 
+resetButton.addEventListener('click', (e) =>{
+    e.preventDefault();
+
+    document.querySelector('.input').style.display = 'inline';
+    document.querySelector('.result').style.display = 'none';
+});
+
+function calculate(part1, party2, party3, party4, party5, party6, party7){
+    //do something
 }
+
+
 
