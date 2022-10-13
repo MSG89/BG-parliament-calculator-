@@ -1,9 +1,11 @@
 
 let calcButton = document.getElementById('calcButton')
-
+let numberOfSeats = 240;
 
 calcButton.addEventListener('click', (e) => {
     e.preventDefault();
+
+    let turnOut = document.getElementById('Turnout').value;
 
     let gerbResult = document.getElementById("gerbResult").value;
     let itnResult = document.getElementById("ITNResult").value;
@@ -20,6 +22,7 @@ calcButton.addEventListener('click', (e) => {
 });
 
 function calculate(resultOne, resultTwo, resultThree, resultFour, resultFive, resultSix, resultSeven){
+
 
 }
 
