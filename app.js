@@ -37,21 +37,12 @@ calcButton.addEventListener('click', (e) => {
         document.querySelector('.inputField').style.display = 'inline';
         document.querySelector('.resultField').style.display = 'none';
 
-        document.getElementById('gerbResult').value = '';
-        document.getElementById('ITNResult').value = '';
-        document.getElementById('dbResult').value = '';
-        document.getElementById('vazrazhdaneResult').value = '';
-        document.getElementById('bgvazhodResult').value = '';
-        document.getElementById('ppResult').value = '';
-        document.getElementById('dpsResult').value = '';
+        clearFields();
         return
     }
 
-
-
-
-
-
+    console.log(partyResults.gerbSeats);
+    console.log(partyResults.gerbPercentage);
 
 
 });
@@ -62,7 +53,19 @@ resetButton.addEventListener('click', (e) =>{
 
     document.querySelector('.inputField').style.display = 'inline';
     document.querySelector('.resultField').style.display = 'none';
+    clearFields();
 });
+
+
+function clearFields(){
+    document.getElementById('gerbResult').value = '';
+    document.getElementById('ITNResult').value = '';
+    document.getElementById('dbResult').value = '';
+    document.getElementById('vazrazhdaneResult').value = '';
+    document.getElementById('bgvazhodResult').value = '';
+    document.getElementById('ppResult').value = '';
+    document.getElementById('dpsResult').value = '';
+}
 
 function calculate(party1, party2, party3, party4, party5, party6, party7){
 
@@ -70,28 +73,50 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
     if(totalPercent > 100){;
         alert('percentages must be equal or less than 100');
     }
+    let gerbSeats = (240*Number(party1))/100;
+    let gerbPercentage = gerbSeats/240;
+
+    let itnSeats = (240*Number(party2))/100;
+    let itnPercentage = itnSeats/240;
+
+    let dbSeats = (240*Number(party3))/100;
+    let dbPercentage = dbSeats/240;
+
+    let vazrazhdaneSeats = (240*Number(party4))/100;
+    let vazrazhdanePercentage = vazrazhdaneSeats/240;
+
+    let bgvazhodSeats = (240*Number(party5))/100;
+    let bgvazhodPercentage = bgvazhodSeats/240;
+
+    let ppSeats = (240*Number(party6))/100;
+    let ppPercentage = ppSeats/240;
+
+    let dpsSeats = (240*Number(party7))/100;
+    let dpsPercentage = dpsSeats/240;
+
+
 
     let partyResults = {
-        gerbSeats:(240*Number(party1))/100,
-        gerbPercentage: gerbSeats/240,
+        gerbSeats: gerbSeats,
+        gerbPercentage: gerbPercentage,
 
-        itnSeats:(240*Number(party2))/100,
-        itnPercentage: itnSeats/240,
+        itnSeats: itnSeats,
+        itnPercentage: itnPercentage,
 
-        dbSeats:(240*Number(party3))/100,
-        dbPercentage: dbSeats/240,
+        dbSeats: dbSeats,
+        dbPercentage: dbPercentage,
 
-        vazrazhdaneSeats:(240*Number(party4))/100,
-        vazrazhdanePercentage: vazrazhdaneSeats/240,
+        vazrazhdaneSeats: vazrazhdaneSeats,
+        vazrazhdanePercentage: vazrazhdanePercentage,
 
-        bgvazhodSeats:(240*Number(party5))/100,
-        bgvazhodPercentage: bgvazhodSeats/240,
+        bgvazhodSeats: bgvazhodSeats,
+        bgvazhodPercentage: bgvazhodPercentage,
 
-        ppSeats:(240*Number(party6))/100,
-        ppPercentage: ppSeats/240,
+        ppSeats: ppSeats,
+        ppPercentage: ppPercentage,
 
-        dpsSeats:(240*Number(party7))/100,
-        dpsPercentage: dpsSeats/240,
+        dpsSeats:dpsSeats,
+        dpsPercentage: dpsPercentage,
 
         total: totalPercent
     };
