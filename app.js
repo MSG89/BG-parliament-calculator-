@@ -16,9 +16,12 @@ calcButton.addEventListener('click', (e) => {
     let bgvazhodResult = document.getElementById("bgvazhodResult").value;
     let ppResult = document.getElementById("ppResult").value;
     
-    let dps = document.getElementById("dps").value;
+    let dps = document.getElementById("dpsResult").value;
 
     calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dps)
+
+    document.querySelector('.input').style.display = 'none';
+    document.querySelector('.result').style.display = 'inline';
 });
 
 function calculate(resultOne, resultTwo, resultThree, resultFour, resultFive, resultSix, resultSeven){
