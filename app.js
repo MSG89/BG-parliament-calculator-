@@ -1,7 +1,6 @@
 
 let calcButton = document.getElementById('calcButton');
 let resetButton = document.getElementById('resetButton');
-let numberOfSeats = 240;
 
 let gerbEl = document.getElementById('gerbResult');
 let itnEl = document.getElementById('ITNResult');
@@ -47,6 +46,8 @@ calcButton.addEventListener('click', (e) => {
         document.getElementById('dpsResult').value = '';
         return
     }
+
+
 
 
 
