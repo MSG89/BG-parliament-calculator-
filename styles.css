@@ -1,3 +1,6 @@
-.result{
+.inputField{
+    display: inline;
+}
+.resultField{
     display: none;
 }

@@ -20,18 +20,17 @@ calcButton.addEventListener('click', (e) => {
     let dps = document.getElementById("dpsResult").value;
 
     calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dps)
-    document.querySelector('.input').style.display = 'none';
-    document.querySelector('.result').style.display = 'inline';
+    document.querySelector('.inputField').style.display = 'none';
+    document.querySelector('.resultField').style.display = 'inline';
 
 });
-
 
 
 resetButton.addEventListener('click', (e) =>{
     e.preventDefault();
 
-    document.querySelector('.input').style.display = 'inline';
-    document.querySelector('.result').style.display = 'none';
+    document.querySelector('.inputField').style.display = 'inline';
+    document.querySelector('.resultField').style.display = 'none';
 });
 
 function calculate(part1, party2, party3, party4, party5, party6, party7){
