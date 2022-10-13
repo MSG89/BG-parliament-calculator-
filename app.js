@@ -3,23 +3,32 @@ let calcButton = document.getElementById('calcButton');
 let resetButton = document.getElementById('resetButton');
 let numberOfSeats = 240;
 
+let gerbEl = document.getElementById('gerbResult');
+let itnEl = document.getElementById('ITNResult');
+let dbEl = document.getElementById('dbResult');
+let vazrazhdaneEl = document.getElementById('vazrazhdaneResult');
+let bgvazhodEl = document.getElementById('bgvazhodResult');
+let ppEl = document.getElementById('ppResult');
+let dpsEl = document.getElementById('dpsResult');
+
+
 calcButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     let turnOut = document.getElementById('Turnout').value;
 
-    let gerbResult = document.getElementById("gerbResult").value;
-    let itnResult = document.getElementById("ITNResult").value;
+    let gerbResult = gerbEl.value;
+    let itnResult = itnEl.value;
 
-    let dbResult = document.getElementById("dbResult").value;
-    let vazrazhdaneResult = document.getElementById("vazrazhdaneResult").value;
+    let dbResult = dbEl.value;
+    let vazrazhdaneResult = vazrazhdaneEl.value;
     
-    let bgvazhodResult = document.getElementById("bgvazhodResult").value;
-    let ppResult = document.getElementById("ppResult").value;
+    let bgvazhodResult = bgvazhodEl.value;
+    let ppResult = ppEl.value;
     
-    let dps = document.getElementById("dpsResult").value;
+    let dpsResult = dpsEl.value;
 
-    let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dps);
+    let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult);
     
     document.querySelector('.inputField').style.display = 'none';
     document.querySelector('.resultField').style.display = 'inline';
@@ -38,6 +47,8 @@ calcButton.addEventListener('click', (e) => {
         document.getElementById('dpsResult').value = '';
         return
     }
+
+
 
 
 
@@ -61,12 +72,26 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
 
     let partyResults = {
         gerbSeats:(240*Number(party1))/100,
+        gerbPercentage: gerbSeats/240,
+
         itnSeats:(240*Number(party2))/100,
+        itnPercentage: itnSeats/240,
+
         dbSeats:(240*Number(party3))/100,
+        dbPercentage: dbSeats/240,
+
         vazrazhdaneSeats:(240*Number(party4))/100,
+        vazrazhdanePercentage: vazrazhdaneSeats/240,
+
         bgvazhodSeats:(240*Number(party5))/100,
+        bgvazhodPercentage: bgvazhodSeats/240,
+
         ppSeats:(240*Number(party6))/100,
+        ppPercentage: ppSeats/240,
+
         dpsSeats:(240*Number(party7))/100,
+        dpsPercentage: dpsSeats/240,
+
         total: totalPercent
     };
 
