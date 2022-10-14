@@ -27,14 +27,14 @@ calcButton.addEventListener('click', (e) => {
     
     let dpsResult = dpsEl.value;
 
-    //receiving an object with party results
+    //receiving an object with party results (partyName, partySeats, partySeatsAsPercentage)
     let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult);
     
     document.querySelector('.inputField').style.display = 'none';
     document.querySelector('.resultField').style.display = 'inline';
 
 
-    if(partyResults.total > 100){
+    if(partyResults[7] > 100){
         document.querySelector('.inputField').style.display = 'inline';
         document.querySelector('.resultField').style.display = 'none';
 
@@ -42,6 +42,9 @@ calcButton.addEventListener('click', (e) => {
         return
     }
     
+    console.log(partyResults[0][0]);
+    console.log(partyResults[0][1]);
+    console.log(partyResults[0][2]);
     //creates empty table
     createTable()
 
@@ -97,30 +100,33 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
 
 
 
-    let partyResults = {
-        gerbSeats: gerbSeats,
-        gerbPercentage: gerbPercentage,
+    let partyResults = [
+        party1 = ['gerb',gerbSeats,gerbPercentage],
+        party2 = ['itn',itnSeats,itnPercentage],
+        party3 = ['db', dbSeats, dbPercentage],
+        party4 = ['vazrazhdane', vazrazhdaneSeats, vazrazhdanePercentage],
+        party5 = ['bgvazhod', bgvazhodSeats, bgvazhodPercentage],
+        party6 = ['pp', ppSeats, ppPercentage],
+        party7 = ['dps', dpsSeats, dpsPercentage],
+        total = totalPercent
+    ];
+    // let partyResults = {
+    //     party1: ['gerb',gerbSeats,gerbPercentage],
+        
+    //     party2: ['itn',itnSeats,itnPercentage],
 
-        itnSeats: itnSeats,
-        itnPercentage: itnPercentage,
+    //     party3: ['db', dbSeats, dbPercentage],
 
-        dbSeats: dbSeats,
-        dbPercentage: dbPercentage,
+    //     party4: ['vazrazhdane', vazrazhdaneSeats, vazrazhdanePercentage],
 
-        vazrazhdaneSeats: vazrazhdaneSeats,
-        vazrazhdanePercentage: vazrazhdanePercentage,
+    //     party5: ['bgvazhod', bgvazhodSeats, bgvazhodPercentage],
+        
+    //     party6: ['pp', ppSeats, ppPercentage],
 
-        bgvazhodSeats: bgvazhodSeats,
-        bgvazhodPercentage: bgvazhodPercentage,
+    //     party7: ['dps', dpsSeats, dpsPercentage],
 
-        ppSeats: ppSeats,
-        ppPercentage: ppPercentage,
-
-        dpsSeats:dpsSeats,
-        dpsPercentage: dpsPercentage,
-
-        total: totalPercent
-    };
+    //     total: totalPercent
+    // };
 
     return partyResults
 }
