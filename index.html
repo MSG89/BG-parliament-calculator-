@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,6 +50,9 @@
             <label for="dps">DPS:</label>
             <input type="text" id="dpsResult" name="dpsResult"><br><br>
 
+            <label for="bsp">BSP:</label>
+            <input type="text" id="bspResult" name="bspResult"><br><br>
+
             <input type="submit" value="Calculate" id="calcButton" name="calcButton">
         </form>    
     </div>
@@ -67,9 +71,11 @@
         
     </div>
     <div>charts<br><br>
-
+        <canvas id="barChart" style="width:100%;max-width:600px"></canvas>
+        <canvas id="pieChart" style="width:100%;max-width:600px"></canvas>
     </div>
     
+
     <script src="app.js"></script>
 </body>
 </html>
