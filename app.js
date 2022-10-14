@@ -27,6 +27,7 @@ calcButton.addEventListener('click', (e) => {
     
     let dpsResult = dpsEl.value;
 
+    //receiving an object with party results
     let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult);
     
     document.querySelector('.inputField').style.display = 'none';
@@ -40,16 +41,9 @@ calcButton.addEventListener('click', (e) => {
         clearFields();
         return
     }
-    //receiving an object with party results
-
-
-    // test Array
-    let arr = ['gerb','120','50'];
-    let arr2 = ['itn','24','10'];
-    let arr3 = ['db','60','25'];
-
-
-    createTable(partyResults,arr, arr2, arr3)
+    
+    //creates empty table
+    createTable()
 
 
 });
@@ -131,7 +125,7 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
     return partyResults
 }
 
-function createTable(partyResults,arr,arr2,arr3){
+function createTable(){
     const table = document.querySelector("table");
     const tBody = document.createElement("tbody");
 
