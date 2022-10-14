@@ -40,9 +40,16 @@ calcButton.addEventListener('click', (e) => {
         clearFields();
         return
     }
+    //receiving an object with party results
 
-    console.log(partyResults.gerbSeats);
-    console.log(partyResults.gerbPercentage);
+
+    // test Array
+    let arr = ['gerb','120','50'];
+    let arr2 = ['itn','24','10'];
+    let arr3 = ['db','60','25'];
+
+
+    createTable(partyResults,arr, arr2, arr3)
 
 
 });
@@ -124,5 +131,21 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
     return partyResults
 }
 
+function createTable(partyResults,arr,arr2,arr3){
+    const table = document.querySelector("table");
+    const tBody = document.createElement("tbody");
+
+
+    for (let i = 0; i < 7; i++) {
+        const rowElement = document.createElement("tr");
+        
+        for (let j = 0; j < 3; j++) {
+            const tdElement = document.createElement("td");
+            rowElement.appendChild(tdElement);
+        }    
+        tBody.appendChild(rowElement);
+    }
+    table.appendChild(tBody);
+}
 
 

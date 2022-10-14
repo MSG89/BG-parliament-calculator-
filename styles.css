@@ -4,3 +4,15 @@
 .resultField{
     display: none;
 }
+table{
+    border: 2px solid black;
+    text-align: center;
+}
+th{
+    border: 2px solid black;
+    font-size: 20px;
+}
+td{
+    border: 1px solid black;
+    font-size: 14px;
+}
