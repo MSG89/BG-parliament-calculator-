@@ -10,6 +10,8 @@ let bgvazhodEl = document.getElementById('bgvazhodResult');
 let ppEl = document.getElementById('ppResult');
 let dpsEl = document.getElementById('dpsResult');
 
+const table = document.querySelector("table");
+
 
 calcButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -42,10 +44,7 @@ calcButton.addEventListener('click', (e) => {
         return
     }
     
-    console.log(partyResults[0][0]);
-    console.log(partyResults[0][1]);
-    console.log(partyResults[0][2]);
-    //creates empty table
+    //creates table
     createTable(partyResults)
 
 
@@ -57,6 +56,7 @@ resetButton.addEventListener('click', (e) =>{
 
     document.querySelector('.inputField').style.display = 'inline';
     document.querySelector('.resultField').style.display = 'none';
+    table.innerHTML = '';
     clearFields();
 });
 
@@ -101,13 +101,13 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
 
 
     let partyResults = [
-        party1 = ['gerb',gerbSeats,gerbPercentage],
-        party2 = ['itn',itnSeats,itnPercentage],
-        party3 = ['db', dbSeats, dbPercentage],
-        party4 = ['vazrazhdane', vazrazhdaneSeats, vazrazhdanePercentage],
-        party5 = ['bgvazhod', bgvazhodSeats, bgvazhodPercentage],
-        party6 = ['pp', ppSeats, ppPercentage],
-        party7 = ['dps', dpsSeats, dpsPercentage],
+        party1 = ['GERB',gerbSeats,gerbPercentage],
+        party2 = ['ITN',itnSeats,itnPercentage],
+        party3 = ['DB', dbSeats, dbPercentage],
+        party4 = ['VAZRAZHDANE', vazrazhdaneSeats, vazrazhdanePercentage],
+        party5 = ['BG VAZHOD', bgvazhodSeats, bgvazhodPercentage],
+        party6 = ['PP', ppSeats, ppPercentage],
+        party7 = ['DPS', dpsSeats, dpsPercentage],
         total = totalPercent
     ];
     // let partyResults = {
@@ -132,7 +132,25 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
 }
 
 function createTable(partyResults){
-    const table = document.querySelector("table");
+    let captionEl = document.createElement('caption');
+    captionEl.textContent = 'Parliament seat distribution';
+    table.appendChild(captionEl);
+
+    let trElement = document.createElement('tr');
+
+    let thElement1 = document.createElement('th');
+    thElement1.textContent = 'Party'
+    let thElement2 = document.createElement('th');
+    thElement2.textContent = 'Seats'
+    let thElement3 = document.createElement('th');
+    thElement3.textContent = 'Percentage of all Seats'
+
+    trElement.appendChild(thElement1);
+    trElement.appendChild(thElement2);
+    trElement.appendChild(thElement3);
+    table.appendChild(trElement);
+
+    
     const tBody = document.createElement("tbody");
 
 
