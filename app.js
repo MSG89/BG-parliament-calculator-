@@ -167,4 +167,3 @@ function createTable(partyResults){
     table.appendChild(tBody);
 }
 
-
