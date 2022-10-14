@@ -46,7 +46,7 @@ calcButton.addEventListener('click', (e) => {
     console.log(partyResults[0][1]);
     console.log(partyResults[0][2]);
     //creates empty table
-    createTable()
+    createTable(partyResults)
 
 
 });
@@ -78,25 +78,25 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
         alert('percentages must be equal or less than 100');
     }
     let gerbSeats = (240*Number(party1))/100;
-    let gerbPercentage = gerbSeats/240;
+    let gerbPercentage = (gerbSeats/240)*100;
 
     let itnSeats = (240*Number(party2))/100;
-    let itnPercentage = itnSeats/240;
+    let itnPercentage = (itnSeats/240)*100;
 
     let dbSeats = (240*Number(party3))/100;
-    let dbPercentage = dbSeats/240;
+    let dbPercentage = (dbSeats/240)*100;
 
     let vazrazhdaneSeats = (240*Number(party4))/100;
-    let vazrazhdanePercentage = vazrazhdaneSeats/240;
+    let vazrazhdanePercentage = (vazrazhdaneSeats/240)*100;
 
     let bgvazhodSeats = (240*Number(party5))/100;
-    let bgvazhodPercentage = bgvazhodSeats/240;
+    let bgvazhodPercentage = (bgvazhodSeats/240)*100;
 
     let ppSeats = (240*Number(party6))/100;
-    let ppPercentage = ppSeats/240;
+    let ppPercentage = (ppSeats/240)*100;
 
     let dpsSeats = (240*Number(party7))/100;
-    let dpsPercentage = dpsSeats/240;
+    let dpsPercentage = (dpsSeats/240)*100;
 
 
 
@@ -131,7 +131,7 @@ function calculate(party1, party2, party3, party4, party5, party6, party7){
     return partyResults
 }
 
-function createTable(){
+function createTable(partyResults){
     const table = document.querySelector("table");
     const tBody = document.createElement("tbody");
 
@@ -141,6 +141,7 @@ function createTable(){
         
         for (let j = 0; j < 3; j++) {
             const tdElement = document.createElement("td");
+            tdElement.textContent = partyResults[i][j];
             rowElement.appendChild(tdElement);
         }    
         tBody.appendChild(rowElement);
