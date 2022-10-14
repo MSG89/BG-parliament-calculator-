@@ -56,24 +56,26 @@
             <input type="submit" value="Calculate" id="calcButton" name="calcButton">
         </form>    
     </div>
-    <div class="resultField">
-        <table>
-            <!-- <caption>Parliament seat distribution</caption>
-            <tr>
-                <th>Party</th>
-                <th>Seats</th>
-                <th>Percentage of all Seats</th>
-            </tr>
-            -->
-        </table><br>
-    
-        <input type="submit" value="Reset" id="resetButton" name="resetButton">
+    <div class = 'results'>
+        <div class="resultField">
+            <table>
+                <!-- <caption>Parliament seat distribution</caption>
+                <tr>
+                    <th>Party</th>
+                    <th>Seats</th>
+                    <th>Percentage of all Seats</th>
+                </tr>
+                -->
+            </table><br>
         
+            <input type="submit" value="Reset" id="resetButton" name="resetButton">
+            
+        </div>
+        <div id="chart">charts<br><br>
+            <canvas id="pieChart"></canvas>
+        </div>
     </div>
-    <div>charts<br><br>
-        <canvas id="barChart" style="width:100%;max-width:600px"></canvas>
-        <canvas id="pieChart" style="width:100%;max-width:600px"></canvas>
-    </div>
+    
     
 
     <script src="app.js"></script>

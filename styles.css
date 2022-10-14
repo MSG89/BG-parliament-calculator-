@@ -18,8 +18,8 @@ td{
 }
 tr:nth-child(even) td {
     background-color: lightgrey;
-  }
+}
   
-  tr:nth-child(odd) td {
+tr:nth-child(odd) td {
     background-color: white;
-  }
+}

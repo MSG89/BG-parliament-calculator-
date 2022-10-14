@@ -12,6 +12,7 @@ let dpsEl = document.getElementById('dpsResult');
 let bspEl = document.getElementById('bspResult');
 
 const table = document.querySelector("table");
+let chartEl = document.getElementById('chart');
 
 
 calcButton.addEventListener('click', (e) => {
@@ -38,7 +39,7 @@ calcButton.addEventListener('click', (e) => {
     document.querySelector('.resultField').style.display = 'inline';
 
 
-    if (partyResults[7] > 100) {
+    if (partyResults[8] > 100) {
         document.querySelector('.inputField').style.display = 'inline';
         document.querySelector('.resultField').style.display = 'none';
 
@@ -47,11 +48,8 @@ calcButton.addEventListener('click', (e) => {
     }
 
     //creates table
-    createTable(partyResults);
-
-    drawBarChart(partyResults);
-    drawPieChart(partyResults);
-
+createTable(partyResults);
+drawPieChart(partyResults);
 
 
 });
@@ -64,6 +62,7 @@ resetButton.addEventListener('click', (e) => {
     document.querySelector('.resultField').style.display = 'none';
     table.innerHTML = '';
     clearFields();
+    chartEl.innerHTML = '';
 });
 
 
@@ -162,34 +161,19 @@ function createTable(partyResults) {
     table.appendChild(tBody);
 }
 
-function drawBarChart(partyResults) {
-    var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
-    var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
-    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow","crimson"];
-
-    new Chart("barChart", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            legend: { display: false },
-            title: {
-                display: true,
-                text: "Parliamentary seat distribution"
-            }
-        }
-    });
-}
 
 function drawPieChart(partyResults) {
+    
+    let canvasEl = document.createElement('canvas')
+    canvasEl.setAttribute('id','pieChart');
+    canvasEl.style.width = '50%';
+    canvasEl.style.maxWidth = '600px';
+    chartEl.appendChild(canvasEl);
+ 
+    
     var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
     var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
-    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow","crimson"];
+    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow", "crimson"];
 
     new Chart("pieChart", {
         type: "pie",
