@@ -166,8 +166,9 @@ function drawPieChart(partyResults) {
     
     let canvasEl = document.createElement('canvas')
     canvasEl.setAttribute('id','pieChart');
+    canvasEl.setAttribute('class','resultField');
     canvasEl.style.width = '50%';
-    canvasEl.style.maxWidth = '600px';
+    canvasEl.style.maxWidth = '500px';
     chartEl.appendChild(canvasEl);
  
     
