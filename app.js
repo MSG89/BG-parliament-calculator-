@@ -20,17 +20,17 @@ calcButton.addEventListener('click', (e) => {
 
     let turnOut = document.getElementById('Turnout').value;
 
-    let gerbResult = gerbEl.value;
-    let itnResult = itnEl.value;
+    let gerbResult = Number(gerbEl.value);
+    let itnResult = Number(itnEl.value);
 
-    let dbResult = dbEl.value;
-    let vazrazhdaneResult = vazrazhdaneEl.value;
+    let dbResult = Number(dbEl.value);
+    let vazrazhdaneResult = Number(vazrazhdaneEl.value);
 
-    let bgvazhodResult = bgvazhodEl.value;
-    let ppResult = ppEl.value;
+    let bgvazhodResult = Number(bgvazhodEl.value);
+    let ppResult = Number(ppEl.value);
 
-    let dpsResult = dpsEl.value;
-    let bspResult = bspEl.value;
+    let dpsResult = Number(dpsEl.value);
+    let bspResult = Number(bspEl.value);
 
     //returning arr of arr - partyNUM [partyName, seats, percentage]
     let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
@@ -79,46 +79,83 @@ function clearFields() {
 
 function calculate(party1, party2, party3, party4, party5, party6, party7, party8) {
 
-    let totalPercent = Number(party1) + Number(party2) + Number(party3) + Number(party4) + Number(party5) + Number(party6) + Number(party7) + Number(party8);
+    let totalPercent = party1 + party2 + party3 + party4 + party5 + party6 + party7 + party8;
     if (totalPercent > 100) {
         ;
         alert('percentages must be equal or less than 100');
     }
-    let gerbSeats = (240 * Number(party1)) / 100;
+
+    let totalValidVote = 0;
+    let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8]; 
+    for (let i = 0; i < validPercentageArr.length; i++) {
+        if(validPercentageArr[i] < 4){
+            validPercentageArr[i] = 0;
+        }else{
+            totalValidVote += validPercentageArr[i];
+        } 
+    }
+
+
+    let gerbSeats = (240 * validPercentageArr[0]) / totalValidVote;
     let gerbPercentage = (gerbSeats / 240) * 100;
 
-    let itnSeats = (240 * Number(party2)) / 100;
+    let itnSeats = (240 * validPercentageArr[1]) / totalValidVote;
     let itnPercentage = (itnSeats / 240) * 100;
 
-    let dbSeats = (240 * Number(party3)) / 100;
+    let dbSeats = (240 * validPercentageArr[2]) / totalValidVote;
     let dbPercentage = (dbSeats / 240) * 100;
 
-    let vazrazhdaneSeats = (240 * Number(party4)) / 100;
+    let vazrazhdaneSeats = (240 * validPercentageArr[3]) / totalValidVote;
     let vazrazhdanePercentage = (vazrazhdaneSeats / 240) * 100;
 
-    let bgvazhodSeats = (240 * Number(party5)) / 100;
+    let bgvazhodSeats = (240 * validPercentageArr[4]) / totalValidVote;
     let bgvazhodPercentage = (bgvazhodSeats / 240) * 100;
 
-    let ppSeats = (240 * Number(party6)) / 100;
+    let ppSeats = (240 * validPercentageArr[5]) / totalValidVote;
     let ppPercentage = (ppSeats / 240) * 100;
 
-    let dpsSeats = (240 * Number(party7)) / 100;
+    let dpsSeats = (240 * validPercentageArr[6]) / totalValidVote;
     let dpsPercentage = (dpsSeats / 240) * 100;
 
-    let bspSeats = (240 * Number(party7)) / 100;
+    let bspSeats = (240 * validPercentageArr[7]) / totalValidVote;
     let bspPercentage = (dpsSeats / 240) * 100;
+
+
+    // let gerbSeats = (240 * party1) / 100;
+    // let gerbPercentage = (gerbSeats / 240) * 100;
+
+    // let itnSeats = (240 * party2) / 100;
+    // let itnPercentage = (itnSeats / 240) * 100;
+
+    // let dbSeats = (240 * party3) / 100;
+    // let dbPercentage = (dbSeats / 240) * 100;
+
+    // let vazrazhdaneSeats = (240 * party4) / 100;
+    // let vazrazhdanePercentage = (vazrazhdaneSeats / 240) * 100;
+
+    // let bgvazhodSeats = (240 * party5) / 100;
+    // let bgvazhodPercentage = (bgvazhodSeats / 240) * 100;
+
+    // let ppSeats = (240 * party6) / 100;
+    // let ppPercentage = (ppSeats / 240) * 100;
+
+    // let dpsSeats = (240 * party7) / 100;
+    // let dpsPercentage = (dpsSeats / 240) * 100;
+
+    // let bspSeats = (240 * party7) / 100;
+    // let bspPercentage = (dpsSeats / 240) * 100;
 
 
 
     let partyResults = [
-        party1 = ['GERB', gerbSeats, gerbPercentage],
-        party2 = ['ITN', itnSeats, itnPercentage],
-        party3 = ['DB', dbSeats, dbPercentage],
-        party4 = ['VAZRAZHDANE', vazrazhdaneSeats, vazrazhdanePercentage],
-        party5 = ['BG VAZHOD', bgvazhodSeats, bgvazhodPercentage],
-        party6 = ['PP', ppSeats, ppPercentage],
-        party7 = ['DPS', dpsSeats, dpsPercentage],
-        party8 = ['BSP', bspSeats, bspPercentage],
+        party1 = ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage)],
+        party2 = ['ITN', Math.round(itnSeats), Math.round(itnPercentage)],
+        party3 = ['DB', Math.round(dbSeats), Math.round(dbPercentage)],
+        party4 = ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage)],
+        party5 = ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage)],
+        party6 = ['PP', Math.round(ppSeats), Math.round(ppPercentage)],
+        party7 = ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage)],
+        party8 = ['BSP', Math.round(bspSeats), Math.round(bspPercentage)],
         total = totalPercent
     ];
 
