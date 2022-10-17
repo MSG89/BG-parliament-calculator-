@@ -1,8 +1,13 @@
 .inputField{
     display: inline;
 }
+.results{
+    display: block;
+    max-width: 95%;
+}
 .resultField{
     display: none;
+    width: 470px;
 }
 table{
     border: 2px solid black;
@@ -22,4 +27,11 @@ tr:nth-child(even) td {
   
 tr:nth-child(odd) td {
     background-color: white;
+}
+#chart{
+    width: 450px;
+    display: block;
+}
+table{
+    width:450px;
 }
