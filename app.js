@@ -2,6 +2,10 @@
 const calcButton = document.getElementById('calcButton');
 const resetButton = document.getElementById('resetButton');
 
+const calcButton2 = document.getElementById('calcButton2');
+const calcButton3 = document.getElementById('calcButton3');
+const calcButton4 = document.getElementById('calcButton4');
+
 const gerbEl = document.getElementById('gerbResult');
 const itnEl = document.getElementById('ITNResult');
 const dbEl = document.getElementById('dbResult');
@@ -13,6 +17,8 @@ const bspEl = document.getElementById('bspResult');
 
 const table = document.querySelector("table");
 const chartEl = document.getElementById('chart');
+
+let partyResults = 
 
 calcButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -32,7 +38,7 @@ calcButton.addEventListener('click', (e) => {
     let bspResult = Number(bspEl.value);
 
     //returning arr of arr - partyNUM [partyName, seats, percentage]
-    let partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
+    partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
 
     document.querySelector('.inputField').style.display = 'none';
     document.querySelector('.resultField').style.display = 'block';
@@ -49,11 +55,12 @@ calcButton.addEventListener('click', (e) => {
     //creates table
     createTable(partyResults);
     drawPieChart(partyResults);
-   
+
+});
+
+calcButton2.addEventListener('click', (e) => {
+    e.preventDefault();
     calculateTwoPartyCoalition(partyResults);
-
-
-
 
 });
 
@@ -125,14 +132,14 @@ function calculate(party1, party2, party3, party4, party5, party6, party7, party
 
 
     let partyResults = [
-        ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage)],
-        ['ITN', Math.round(itnSeats), Math.round(itnPercentage)],
-        ['DB', Math.round(dbSeats), Math.round(dbPercentage)],
-        ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage)],
-        ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage)],
-        ['PP', Math.round(ppSeats), Math.round(ppPercentage)],
-        ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage)],
-        ['BSP', Math.round(bspSeats), Math.round(bspPercentage)],
+        ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage),party1],
+        ['ITN', Math.round(itnSeats), Math.round(itnPercentage),party2],
+        ['DB', Math.round(dbSeats), Math.round(dbPercentage),party3],
+        ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage),party4],
+        ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage),party5],
+        ['PP', Math.round(ppSeats), Math.round(ppPercentage),party6],
+        ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage),party7],
+        ['BSP', Math.round(bspSeats), Math.round(bspPercentage),party8],
         total = totalPercent
     ];
 
@@ -152,10 +159,13 @@ function createTable(partyResults) {
     thElement2.textContent = 'Seats'
     let thElement3 = document.createElement('th');
     thElement3.textContent = 'Percentage of all Seats'
+    let thElement4 = document.createElement('th');
+    thElement4.textContent = 'Voting results';
 
     trElement.appendChild(thElement1);
     trElement.appendChild(thElement2);
     trElement.appendChild(thElement3);
+    trElement.appendChild(thElement4);
     table.appendChild(trElement);
 
 
@@ -165,16 +175,16 @@ function createTable(partyResults) {
     for (let i = 0; i < 8; i++) {
         const rowElement = document.createElement("tr");
 
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < 4; j++) {
             const tdElement = document.createElement("td");
             tdElement.textContent = partyResults[i][j];
+            console.log(partyResults[i][j]);
             rowElement.appendChild(tdElement);
         }
         tBody.appendChild(rowElement);
     }
     table.appendChild(tBody);
 }
-
 
 function drawPieChart(partyResults) {
 
@@ -205,13 +215,11 @@ function drawPieChart(partyResults) {
     });
 }
 
-
 function calculateTwoPartyCoalition(partyResults) {
 
-    console.log(partyResults);
     //to do - make an KVP object from party Results
-    
-    let testData = {
+
+    let inputData = {
         gerb: partyResults[0][1],
         itn: partyResults[1][1],
         db: partyResults[2][1],
@@ -222,10 +230,17 @@ function calculateTwoPartyCoalition(partyResults) {
         bsp: partyResults[7][1]
     };
 
-    console.log(testData);
+    const keysRaw = Object.keys(inputData);
+    const valuesRaw = Object.values(inputData)
+    let keys = [];
+    let values = [];
 
-    const keys = Object.keys(testData);
-    const values = Object.values(testData)
+    for (let i = 0; i < keysRaw.length; i++) {
+        if(valuesRaw[i]>0){
+            keys.push(keysRaw[i]);
+            values.push(valuesRaw[i]);
+        }
+    }
 
     let Coalitions = [];
     let CoalitionSeats = [];
@@ -236,16 +251,16 @@ function calculateTwoPartyCoalition(partyResults) {
 
         for (let j = 0; j < keys.length; j++) {
 
-            if(keys[i] === keys[j]){
+            if (keys[i] === keys[j]) {
                 continue;
-            }else if((values[i] + values[j]) > majorityThreshold){
+            } else if ((values[i] + values[j]) > majorityThreshold) {
 
-                let currentCombo = [keys[i],keys[j]].sort().join(" + ");
-                let currentComboSeats = [values[i]+values[j]];
+                let currentCombo = [keys[i], keys[j]].sort().join(" + ");
+                let currentComboSeats = [values[i] + values[j]];
 
-                if(Coalitions.includes(currentCombo)){
+                if (Coalitions.includes(currentCombo)) {
                     continue;
-                }else{
+                } else {
                     Coalitions.push(currentCombo);
                     CoalitionSeats.push(currentComboSeats);
                 }
@@ -253,13 +268,8 @@ function calculateTwoPartyCoalition(partyResults) {
         }
     }
 
-
     for (let index = 0; index < Coalitions.length; index++) {
-       console.log(Coalitions[index]);
-       console.log(CoalitionSeats[index]);
+        console.log(Coalitions[index]);
+        console.log(CoalitionSeats[index]);
     }
-
-
-
 }
-    
