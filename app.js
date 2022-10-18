@@ -65,6 +65,10 @@ calcButton2.addEventListener('click', (e) => {
 
 });
 
+calcButton3.addEventListener('click', (e) => {
+    e.preventDefault();
+    calculateThreePartyCoalition(partyResults);
+});
 
 resetButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -282,6 +286,7 @@ function calculateTwoPartyCoalition(partyResults) {
 }
 
 function createTableTwoPartyCoal(coalitionName, totalSeats) {
+
     coalitionTableEl.innerHTML = '';
     coalitionTableEl.style.display = 'block';
     let captionEl = document.createElement('caption');
@@ -323,4 +328,66 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
     }
     coalitionTableEl.appendChild(tBody);
 }
+
+function calculateTwoPartyCoalition(partyResults) {
+
+    //to do - make an KVP object from party Results
+    
+    let inputData = {
+        gerb: partyResults[0][1],
+        itn: partyResults[1][1],
+        db: partyResults[2][1],
+        vazrazhdane: partyResults[3][1],
+        bgvazhod: partyResults[4][1],
+        pp: partyResults[5][1],
+        dps: partyResults[6][1],
+        bsp: partyResults[7][1]
+    };
+
+    const keysRaw = Object.keys(inputData);
+    const valuesRaw = Object.values(inputData)
+    let keys = [];
+    let values = [];
+
+    for (let i = 0; i < keysRaw.length; i++) {
+        if (valuesRaw[i] > 0) {
+            keys.push(keysRaw[i]);
+            values.push(valuesRaw[i]);
+        }
+    }
+
+    let Coalitions = [];
+    let CoalitionSeats = [];
+
+    const majorityThreshold = 121;
+
+    for (let i = 0; i < keys.length; i++) {
+
+        for (let j = 0; j < keys.length; j++) {
+
+            if (keys[i] === keys[j]) {
+                continue;
+            } else if ((values[i] + values[j]) > majorityThreshold) {
+
+                let currentCombo = [keys[i], keys[j]].sort().join(" + ");
+                let currentComboSeats = [values[i] + values[j]];
+
+                if (Coalitions.includes(currentCombo)) {
+                    continue;
+                } else {
+                    Coalitions.push(currentCombo);
+                    CoalitionSeats.push(currentComboSeats);
+                }
+            }
+        }
+    }
+
+    for (let index = 0; index < Coalitions.length; index++) {
+        console.log(Coalitions[index]);
+        console.log(CoalitionSeats[index]);
+    }
+
+    createTableTwoPartyCoal(Coalitions, CoalitionSeats)
+}
+
 
