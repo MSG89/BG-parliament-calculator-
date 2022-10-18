@@ -128,7 +128,7 @@ function calculate(party1, party2, party3, party4, party5, party6, party7, party
     let dpsPercentage = (dpsSeats / 240) * 100;
 
     let bspSeats = (240 * validPercentageArr[7]) / totalValidVote;
-    let bspPercentage = (dpsSeats / 240) * 100;
+    let bspPercentage = (bspSeats / 240) * 100;
 
 
     let partyResults = [
@@ -178,7 +178,6 @@ function createTable(partyResults) {
         for (let j = 0; j < 4; j++) {
             const tdElement = document.createElement("td");
             tdElement.textContent = partyResults[i][j];
-            console.log(partyResults[i][j]);
             rowElement.appendChild(tdElement);
         }
         tBody.appendChild(rowElement);
