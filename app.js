@@ -18,45 +18,45 @@ const bspEl = document.getElementById('bspResult');
 const table = document.querySelector("table");
 const chartEl = document.getElementById('chart');
 
-let partyResults = 
+let partyResults =
 
-calcButton.addEventListener('click', (e) => {
-    e.preventDefault();
+    calcButton.addEventListener('click', (e) => {
+        e.preventDefault();
 
-    const turnOut = document.getElementById('Turnout').value;
+        const turnOut = document.getElementById('Turnout').value;
 
-    let gerbResult = Number(gerbEl.value);
-    let itnResult = Number(itnEl.value);
+        let gerbResult = Number(gerbEl.value);
+        let itnResult = Number(itnEl.value);
 
-    let dbResult = Number(dbEl.value);
-    let vazrazhdaneResult = Number(vazrazhdaneEl.value);
+        let dbResult = Number(dbEl.value);
+        let vazrazhdaneResult = Number(vazrazhdaneEl.value);
 
-    let bgvazhodResult = Number(bgvazhodEl.value);
-    let ppResult = Number(ppEl.value);
+        let bgvazhodResult = Number(bgvazhodEl.value);
+        let ppResult = Number(ppEl.value);
 
-    let dpsResult = Number(dpsEl.value);
-    let bspResult = Number(bspEl.value);
+        let dpsResult = Number(dpsEl.value);
+        let bspResult = Number(bspEl.value);
 
-    //returning arr of arr - partyNUM [partyName, seats, percentage]
-    partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
+        //returning arr of arr - partyNUM [partyName, seats, percentage]
+        partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
 
-    document.querySelector('.inputField').style.display = 'none';
-    document.querySelector('.resultField').style.display = 'block';
+        document.querySelector('.inputField').style.display = 'none';
+        document.querySelector('.resultField').style.display = 'block';
 
 
-    if (partyResults[8] > 100) {
-        document.querySelector('.inputField').style.display = 'block';
-        document.querySelector('.resultField').style.display = 'none';
+        if (partyResults[8] > 100) {
+            document.querySelector('.inputField').style.display = 'block';
+            document.querySelector('.resultField').style.display = 'none';
 
-        clearFields();
-        return
-    }
+            clearFields();
+            return
+        }
 
-    //creates table
-    createTable(partyResults);
-    drawPieChart(partyResults);
+        //creates table
+        createTable(partyResults);
+        drawPieChart(partyResults);
 
-});
+    });
 
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
@@ -132,14 +132,14 @@ function calculate(party1, party2, party3, party4, party5, party6, party7, party
 
 
     let partyResults = [
-        ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage),party1],
-        ['ITN', Math.round(itnSeats), Math.round(itnPercentage),party2],
-        ['DB', Math.round(dbSeats), Math.round(dbPercentage),party3],
-        ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage),party4],
-        ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage),party5],
-        ['PP', Math.round(ppSeats), Math.round(ppPercentage),party6],
-        ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage),party7],
-        ['BSP', Math.round(bspSeats), Math.round(bspPercentage),party8],
+        ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage), party1],
+        ['ITN', Math.round(itnSeats), Math.round(itnPercentage), party2],
+        ['DB', Math.round(dbSeats), Math.round(dbPercentage), party3],
+        ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage), party4],
+        ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage), party5],
+        ['PP', Math.round(ppSeats), Math.round(ppPercentage), party6],
+        ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage), party7],
+        ['BSP', Math.round(bspSeats), Math.round(bspPercentage), party8],
         total = totalPercent
     ];
 
@@ -178,6 +178,9 @@ function createTable(partyResults) {
         for (let j = 0; j < 4; j++) {
             const tdElement = document.createElement("td");
             tdElement.textContent = partyResults[i][j];
+            if(j==2){
+                tdElement.textContent += ` %`;
+            }
             rowElement.appendChild(tdElement);
         }
         tBody.appendChild(rowElement);
@@ -235,7 +238,7 @@ function calculateTwoPartyCoalition(partyResults) {
     let values = [];
 
     for (let i = 0; i < keysRaw.length; i++) {
-        if(valuesRaw[i]>0){
+        if (valuesRaw[i] > 0) {
             keys.push(keysRaw[i]);
             values.push(valuesRaw[i]);
         }
@@ -271,4 +274,48 @@ function calculateTwoPartyCoalition(partyResults) {
         console.log(Coalitions[index]);
         console.log(CoalitionSeats[index]);
     }
+
+    createTableTwoPartyCoal(Coalitions, CoalitionSeats)
 }
+
+function createTableTwoPartyCoal(coalitionName, totalSeats) {
+    let captionEl = document.createElement('caption');
+    captionEl.textContent = 'Possible two party coalitions';
+    table.appendChild(captionEl);
+
+    let trElement = document.createElement('tr');
+
+    let thElement1 = document.createElement('th');
+    thElement1.textContent = 'Coalition'
+    let thElement2 = document.createElement('th');
+    thElement2.textContent = 'Seats'
+    let thElement3 = document.createElement('th');
+    thElement3.textContent = 'Percentage of all Seats'
+
+    trElement.appendChild(thElement1);
+    trElement.appendChild(thElement2);
+    trElement.appendChild(thElement3);
+    table.appendChild(trElement);
+
+
+    const tBody = document.createElement("tbody");
+
+
+    for (let i = 0; i < coalitionName.length; i++) {
+        const rowElement = document.createElement("tr");
+        const tdElement = document.createElement("td");
+        const tdElement1 = document.createElement("td");
+        const tdElement2 = document.createElement("td");
+
+        tdElement.textContent = coalitionName[i];
+        rowElement.appendChild(tdElement);
+        tdElement1.textContent = totalSeats[i];
+        rowElement.appendChild(tdElement1);
+        tdElement2.textContent = `${Math.round(((totalSeats[i]/240)*100))} %`;
+        rowElement.appendChild(tdElement2);
+
+        tBody.appendChild(rowElement);
+    }
+    table.appendChild(tBody);
+}
+

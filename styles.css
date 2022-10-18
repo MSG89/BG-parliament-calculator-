@@ -12,6 +12,7 @@
 table{
     border: 2px solid black;
     text-align: center;
+    width:450px;
 }
 th{
     border: 2px solid black;
@@ -31,7 +32,4 @@ tr:nth-child(odd) td {
 #chart{
     width: 450px;
     display: block;
-}
-table{
-    width:450px;
 }
