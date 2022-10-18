@@ -33,3 +33,6 @@ tr:nth-child(odd) td {
     width: 450px;
     display: block;
 }
+#coalitionTable{
+    display:none;
+}

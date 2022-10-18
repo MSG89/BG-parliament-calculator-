@@ -15,7 +15,8 @@ const ppEl = document.getElementById('ppResult');
 const dpsEl = document.getElementById('dpsResult');
 const bspEl = document.getElementById('bspResult');
 
-const table = document.querySelector("table");
+const partyTableEl = document.getElementById('partyTable');
+const coalitionTableEl = document.getElementById('coalitionTable');
 const chartEl = document.getElementById('chart');
 
 let partyResults =
@@ -70,7 +71,9 @@ resetButton.addEventListener('click', (e) => {
 
     document.querySelector('.inputField').style.display = 'block';
     document.querySelector('.resultField').style.display = 'none';
-    table.innerHTML = '';
+    partyTableEl.innerHTML = '';
+    coalitionTableEl.innerHTML = '';
+    coalitionTableEl.style.display = 'none';
     clearFields();
     chartEl.innerHTML = '';
 });
@@ -149,7 +152,7 @@ function calculate(party1, party2, party3, party4, party5, party6, party7, party
 function createTable(partyResults) {
     let captionEl = document.createElement('caption');
     captionEl.textContent = 'Parliament seat distribution';
-    table.appendChild(captionEl);
+    partyTableEl.appendChild(captionEl);
 
     let trElement = document.createElement('tr');
 
@@ -166,7 +169,7 @@ function createTable(partyResults) {
     trElement.appendChild(thElement2);
     trElement.appendChild(thElement3);
     trElement.appendChild(thElement4);
-    table.appendChild(trElement);
+    partyTableEl.appendChild(trElement);
 
 
     const tBody = document.createElement("tbody");
@@ -185,7 +188,7 @@ function createTable(partyResults) {
         }
         tBody.appendChild(rowElement);
     }
-    table.appendChild(tBody);
+    partyTableEl.appendChild(tBody);
 }
 
 function drawPieChart(partyResults) {
@@ -220,7 +223,7 @@ function drawPieChart(partyResults) {
 function calculateTwoPartyCoalition(partyResults) {
 
     //to do - make an KVP object from party Results
-
+    
     let inputData = {
         gerb: partyResults[0][1],
         itn: partyResults[1][1],
@@ -279,9 +282,11 @@ function calculateTwoPartyCoalition(partyResults) {
 }
 
 function createTableTwoPartyCoal(coalitionName, totalSeats) {
+    coalitionTableEl.innerHTML = '';
+    coalitionTableEl.style.display = 'block';
     let captionEl = document.createElement('caption');
     captionEl.textContent = 'Possible two party coalitions';
-    table.appendChild(captionEl);
+    coalitionTableEl.appendChild(captionEl);
 
     let trElement = document.createElement('tr');
 
@@ -295,7 +300,7 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
     trElement.appendChild(thElement1);
     trElement.appendChild(thElement2);
     trElement.appendChild(thElement3);
-    table.appendChild(trElement);
+    coalitionTableEl.appendChild(trElement);
 
 
     const tBody = document.createElement("tbody");
@@ -316,6 +321,6 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
 
         tBody.appendChild(rowElement);
     }
-    table.appendChild(tBody);
+    coalitionTableEl.appendChild(tBody);
 }
 
