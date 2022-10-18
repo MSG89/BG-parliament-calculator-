@@ -14,7 +14,6 @@ const bspEl = document.getElementById('bspResult');
 const table = document.querySelector("table");
 const chartEl = document.getElementById('chart');
 
-
 calcButton.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -50,7 +49,8 @@ calcButton.addEventListener('click', (e) => {
     //creates table
     createTable(partyResults);
     drawPieChart(partyResults);
-    calculateMajorities(partyResults);
+   
+    calculateTwoPartyCoalition(partyResults);
 
 
 
@@ -205,34 +205,61 @@ function drawPieChart(partyResults) {
     });
 }
 
-function calculateMajorities(partyResults) {
 
- 
+function calculateTwoPartyCoalition(partyResults) {
+
+    console.log(partyResults);
     //to do - make an KVP object from party Results
- 
+    
+    let testData = {
+        gerb: partyResults[0][1],
+        itn: partyResults[1][1],
+        db: partyResults[2][1],
+        vazrazhdane: partyResults[3][1],
+        bgvazhod: partyResults[4][1],
+        pp: partyResults[5][1],
+        dps: partyResults[6][1],
+        bsp: partyResults[7][1]
+    };
 
-    const combinations = new Set();
-    const threshold = 121;
+    console.log(testData);
 
-    const result = {};
+    const keys = Object.keys(testData);
+    const values = Object.values(testData)
 
-    // Object.entries(testData).map(([key1, value1]) => {
-    //     return Object.entries(testData).map(([key2, value2]) => {
-    //         if (key1 === key2) return; // party1 === party1 do nothing
+    let Coalitions = [];
+    let CoalitionSeats = [];
 
-    //         // take care of the doubles, party1 + party2 === party2 + party1
-    //         const key = [key1, key2].sort().join(":");
-    //         if (combinations.has(key)) return;
-    //         combinations.add(key);
+    const majorityThreshold = 121;
 
-    //         // check if the sum is over the threshold
-    //         const sum = value1 + value2;
-    //         if (sum > threshold) result[key] = sum;
-    //     });
-    // });
+    for (let i = 0; i < keys.length; i++) {
 
-    // console.log(result);
+        for (let j = 0; j < keys.length; j++) {
+
+            if(keys[i] === keys[j]){
+                continue;
+            }else if((values[i] + values[j]) > majorityThreshold){
+
+                let currentCombo = [keys[i],keys[j]].sort().join(" + ");
+                let currentComboSeats = [values[i]+values[j]];
+
+                if(Coalitions.includes(currentCombo)){
+                    continue;
+                }else{
+                    Coalitions.push(currentCombo);
+                    CoalitionSeats.push(currentComboSeats);
+                }
+            }
+        }
+    }
+
+
+    for (let index = 0; index < Coalitions.length; index++) {
+       console.log(Coalitions[index]);
+       console.log(CoalitionSeats[index]);
+    }
 
 
 
 }
+    
