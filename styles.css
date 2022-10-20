@@ -48,4 +48,7 @@ tr:nth-child(odd) td {
 #chartjs-size-monitor{
     display:none;
 }
+.buttons{
+    display:none;
+}
 
