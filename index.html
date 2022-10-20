@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +10,11 @@
     <title>BG Parliament majority calculator</title>
 
 </head>
+
 <body>
     <div>
-        <h1>Simple calculator for checking possible majorities in BG pariament and seat distribution as per vote tally.</h1>
+        <h1>Simple calculator for checking possible majorities in BG pariament and seat distribution as per vote tally.
+        </h1>
     </div>
     <div>
         <h2>Instructions:
@@ -31,22 +34,22 @@
 
             <label for="GERB">GERB:</label>
             <input type="text" id="gerbResult" name="gerbResult"><br><br>
-            
+
             <label for="ITN">ITN:</label>
             <input type="text" id="ITNResult" name="ITNResult"><br><br>
-            
+
             <label for="DB">DB:</label>
             <input type="text" id="dbResult" name="dbResult"><br><br>
-            
+
             <label for="vazrazhdane">VAZRAZHDANE:</label>
             <input type="text" id="vazrazhdaneResult" name="vazrazhdaneResult"><br><br>
-            
+
             <label for="BGVAZHOD">BG VAZHOD:</label>
             <input type="text" id="bgvazhodResult" name="bgvazhodResult"><br><br>
-            
+
             <label for="PP">PP:</label>
             <input type="text" id="ppResult" name="ppResult"><br><br>
-            
+
             <label for="dps">DPS:</label>
             <input type="text" id="dpsResult" name="dpsResult"><br><br>
 
@@ -54,9 +57,9 @@
             <input type="text" id="bspResult" name="bspResult"><br><br>
 
             <input type="submit" value="Calculate" id="calcButton" name="calcButton">
-        </form>    
+        </form>
     </div>
-    <div class = 'results'>
+    <div class='results'>
         <div class="resultField">
             <table id="partyTable">
                 <!-- <caption>Parliament seat distribution</caption>
@@ -69,25 +72,30 @@
             </table>
             <div id="chart">
             </div>
-            
+
         </div>
         <div class="coalitionField">
-            <table id="coalitionTable">
-
-            </table><br>
-        
-            <input type="submit" value="Reset" id="resetButton" name="resetButton"><br><br>
-            <input type="submit" value="Calculate possible two party coalitions" id="calcButton2" name="calcButton2"><br>
-            <input type="submit" value="Calculate possible three party coalitions" id="calcButton3" name="calcButton3"><br>
-            <input type="submit" value="Calculate possible four party coalitions" id="calcButton4" name="calcButton4"><br>
             
+            <table id="coalitionTable">
+            </table><br>
+
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Reset" id="resetButton" name="resetButton"><br><br>
+            <input type="submit" value="Calculate possible two party coalitions" id="calcButton2"
+                name="calcButton2"><br>
+            <input type="submit" value="Calculate possible three party coalitions" id="calcButton3"
+                name="calcButton3"><br>
+            <input type="submit" value="Calculate possible four party coalitions" id="calcButton4"
+                name="calcButton4"><br>
 
         </div>
 
     </div>
-    
-    
+
+
 
     <script src="app.js"></script>
 </body>
+
 </html>
