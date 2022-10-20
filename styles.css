@@ -3,16 +3,22 @@
 }
 .results{
     display: block;
-    max-width: 95%;
 }
 .resultField{
     display: none;
-    width: 470px;
+    padding: 5px;
+}
+.coalitionField{
+    display: none;
+    padding: 5px;
 }
 table{
+    display: inline-block;
     border: 2px solid black;
     text-align: center;
-    width:450px;
+    padding: 5px;
+    width: 450px;
+    margin: 5px;
 }
 th{
     border: 2px solid black;
@@ -30,9 +36,16 @@ tr:nth-child(odd) td {
     background-color: white;
 }
 #chart{
+    display: inline-block;
+    padding: 5px;
     width: 450px;
-    display: block;
+    margin:5px;
+    margin-bottom: 95px;
 }
 #coalitionTable{
     display:none;
 }
+#chartjs-size-monitor{
+    display:none;
+}
+

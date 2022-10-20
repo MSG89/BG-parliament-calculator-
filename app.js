@@ -43,11 +43,13 @@ let partyResults =
 
         document.querySelector('.inputField').style.display = 'none';
         document.querySelector('.resultField').style.display = 'block';
+        document.querySelector('.coalitionField').style.display = 'block';
 
 
         if (partyResults[8] > 100) {
             document.querySelector('.inputField').style.display = 'block';
             document.querySelector('.resultField').style.display = 'none';
+            document.querySelector('.coalitionField').style.display = 'none';
 
             clearFields();
             return
@@ -80,6 +82,7 @@ resetButton.addEventListener('click', (e) => {
 
     document.querySelector('.inputField').style.display = 'block';
     document.querySelector('.resultField').style.display = 'none';
+    document.querySelector('.coalitionField').style.display = 'none';
     partyTableEl.innerHTML = '';
     coalitionTableEl.innerHTML = '';
     coalitionTableEl.style.display = 'none';
