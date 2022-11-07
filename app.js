@@ -482,18 +482,20 @@ function createTableThreePartyCoal(coalitionName, totalSeats) {
     }
     coalitionTableEl.appendChild(tBody);
 
-    const visualizeBtn = document.querySelectorAll('.VisualizeBtn');
-    visualizeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    
+
+    // const visualizeBtn = document.querySelectorAll('.VisualizeBtn');
+    // visualizeBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
         
 
-        const coalitionName = "tralala";
-        const coalitionSeats = 150;
+    //     const coalitionName = "tralala";
+    //     const coalitionSeats = 150;
         
-        drawPieChartCoalition(coalitionName,coalitionSeats);
+    //     drawPieChartCoalition(coalitionName,coalitionSeats);
 
 
-    })
+    // })
 }
 
 function calculateFourPartyCoalition(partyResults) {
