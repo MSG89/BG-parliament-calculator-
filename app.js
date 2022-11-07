@@ -18,6 +18,7 @@ const bspEl = document.getElementById('bspResult');
 const partyTableEl = document.getElementById('partyTable');
 const coalitionTableEl = document.getElementById('coalitionTable');
 const chartEl = document.getElementById('chart');
+const chartCoalEl = document.getElementById('chartCoalition');
 
 let partyResults =
 
@@ -43,7 +44,7 @@ let partyResults =
 
         document.querySelector('.inputField').style.display = 'none';
         document.querySelector('.resultField').style.display = 'block';
-        document.querySelector('.coalitionField').style.display = 'block';
+        document.querySelector('.coalitionField').style.display = 'inline-flex';
         document.querySelector('.buttons').style.display = 'block';
 
 
@@ -236,6 +237,37 @@ function drawPieChart(partyResults) {
     });
 }
 
+function drawPieChartCoalition(coalitionName, coalitionSeats) {
+
+    chartCoalEl.innerHTML = '';
+    let canvasEl = document.createElement('canvas');
+    canvasEl.setAttribute('id', 'pieChartCoalition');
+    chartCoalEl.appendChild(canvasEl);
+
+    const oppositionSeats = 240-coalitionSeats;
+
+    var xValues = [coalitionName, "Opposition"];
+    var yValues = [coalitionSeats, oppositionSeats];
+    var barColors = ["blue", "red"];
+
+    new Chart("pieChartCoalition", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Coalition / Opposition seat distribution"
+            }
+        }
+    });
+}
+
 function calculateTwoPartyCoalition(partyResults) {
 
     //to do - make an KVP object from party Results
@@ -324,6 +356,8 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
         const tdElement1 = document.createElement("td");
         const tdElement2 = document.createElement("td");
 
+        const tdElement3 = document.createElement("td");
+
         tdElement.textContent = coalitionName[i];
         rowElement.appendChild(tdElement);
         tdElement1.textContent = totalSeats[i];
@@ -331,9 +365,15 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
         tdElement2.textContent = `${Math.round(((totalSeats[i] / 240) * 100))} %`;
         rowElement.appendChild(tdElement2);
 
+        tdElement3.innerHTML = `<input type="submit" value="Visualize" class="VisualizeBtn" name="VisualizeBtn"></input>`
+        rowElement.appendChild(tdElement3);
+
         tBody.appendChild(rowElement);
     }
     coalitionTableEl.appendChild(tBody);
+
+
+    //draw table
 }
 
 function calculateThreePartyCoalition(partyResults) {
@@ -426,6 +466,8 @@ function createTableThreePartyCoal(coalitionName, totalSeats) {
         const tdElement1 = document.createElement("td");
         const tdElement2 = document.createElement("td");
 
+        const tdElement3 = document.createElement("td");
+
         tdElement.textContent = coalitionName[i];
         rowElement.appendChild(tdElement);
         tdElement1.textContent = totalSeats[i];
@@ -433,9 +475,25 @@ function createTableThreePartyCoal(coalitionName, totalSeats) {
         tdElement2.textContent = `${Math.round(((totalSeats[i] / 240) * 100))} %`;
         rowElement.appendChild(tdElement2);
 
+        tdElement3.innerHTML = `<input type="submit" value="Visualize" class="VisualizeBtn" name="VisualizeBtn"></input>`
+        rowElement.appendChild(tdElement3);
+
         tBody.appendChild(rowElement);
     }
     coalitionTableEl.appendChild(tBody);
+
+    const visualizeBtn = document.querySelectorAll('.VisualizeBtn');
+    visualizeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+
+        const coalitionName = "tralala";
+        const coalitionSeats = 150;
+        
+        drawPieChartCoalition(coalitionName,coalitionSeats);
+
+
+    })
 }
 
 function calculateFourPartyCoalition(partyResults) {
@@ -533,6 +591,8 @@ function createTableFourPartyCoal(coalitionName, totalSeats) {
         const tdElement1 = document.createElement("td");
         const tdElement2 = document.createElement("td");
 
+        const tdElement3 = document.createElement("td");
+
         tdElement.textContent = coalitionName[i];
         rowElement.appendChild(tdElement);
         tdElement1.textContent = totalSeats[i];
@@ -540,9 +600,13 @@ function createTableFourPartyCoal(coalitionName, totalSeats) {
         tdElement2.textContent = `${Math.round(((totalSeats[i] / 240) * 100))} %`;
         rowElement.appendChild(tdElement2);
 
+        tdElement3.innerHTML = `<input type="submit" value="Visualize" class="VisualizeBtn" name="VisualizeBtn"></input>`
+        rowElement.appendChild(tdElement3);
+
         tBody.appendChild(rowElement);
     }
     coalitionTableEl.appendChild(tBody);
+
 }
 
 
