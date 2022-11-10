@@ -66,17 +66,20 @@ let partyResults =
 
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
+    document.getElementById('chartCoalition').innerHTML = '';
     calculateTwoPartyCoalition(partyResults);
 
 });
 
 calcButton3.addEventListener('click', (e) => {
     e.preventDefault();
+    document.getElementById('chartCoalition').innerHTML = '';
     calculateThreePartyCoalition(partyResults);
 });
 
 calcButton4.addEventListener('click', (e) => {
     e.preventDefault();
+    document.getElementById('chartCoalition').innerHTML = '';
     calculateFourPartyCoalition(partyResults);
 });
 
@@ -87,6 +90,8 @@ resetButton.addEventListener('click', (e) => {
     document.querySelector('.resultField').style.display = 'none';
     document.querySelector('.coalitionField').style.display = 'none';
     document.querySelector('.buttons').style.display = 'none';
+    document.getElementById('chartCoalition').innerHTML = '';
+
 
     partyTableEl.innerHTML = '';
     coalitionTableEl.innerHTML = '';
@@ -244,7 +249,7 @@ function drawPieChartCoalition(coalitionName, coalitionSeats) {
     canvasEl.setAttribute('id', 'pieChartCoalition');
     chartCoalEl.appendChild(canvasEl);
 
-    const oppositionSeats = 240-coalitionSeats;
+    const oppositionSeats = 100 - coalitionSeats;
 
     var xValues = [coalitionName, "Opposition"];
     var yValues = [coalitionSeats, oppositionSeats];
@@ -374,6 +379,30 @@ function createTableTwoPartyCoal(coalitionName, totalSeats) {
 
 
     //draw table
+
+    const btnArr = document.querySelectorAll('.VisualizeBtn');
+    const btnLenght = btnArr.length;
+
+    for (let index = 0; index < btnLenght; index++) {
+        btnArr[index].addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const tableRow = e.currentTarget.parentNode.parentNode;
+            const tableRowChildren = tableRow.children;
+
+            const coalitionName = tableRowChildren.item(0).textContent;
+            const coalitionSharePercentage = tableRowChildren.item(2).textContent;
+
+            coalitionShare = Number(coalitionSharePercentage.replace(/[%]/g, ''));
+
+
+            console.log(coalitionName);
+            console.log(coalitionShare);
+
+            drawPieChartCoalition(coalitionName, coalitionShare);
+        })
+    }
+
 }
 
 function calculateThreePartyCoalition(partyResults) {
@@ -482,16 +511,40 @@ function createTableThreePartyCoal(coalitionName, totalSeats) {
     }
     coalitionTableEl.appendChild(tBody);
 
-    
+    // visualization
+    const btnArr = document.querySelectorAll('.VisualizeBtn');
+    const btnLenght = btnArr.length;
 
-    // const visualizeBtn = document.querySelectorAll('.VisualizeBtn');
+    for (let index = 0; index < btnLenght; index++) {
+        btnArr[index].addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const tableRow = e.currentTarget.parentNode.parentNode;
+            const tableRowChildren = tableRow.children;
+
+            const coalitionName = tableRowChildren.item(0).textContent;
+            const coalitionSharePercentage = tableRowChildren.item(2).textContent;
+
+            coalitionShare = Number(coalitionSharePercentage.replace(/[%]/g, ''));
+
+
+            console.log(coalitionName);
+            console.log(coalitionShare);
+
+            drawPieChartCoalition(coalitionName, coalitionShare);
+        })
+    }
+
+
+
+    // const visualizeBtn = document.querySelector('.VisualizeBtn');
     // visualizeBtn.addEventListener('click', (e) => {
     //     e.preventDefault();
-        
+
 
     //     const coalitionName = "tralala";
     //     const coalitionSeats = 150;
-        
+
     //     drawPieChartCoalition(coalitionName,coalitionSeats);
 
 
@@ -535,15 +588,15 @@ function calculateFourPartyCoalition(partyResults) {
         for (let j = 0; j < keys.length; j++) {
 
             for (let k = 0; k < keys.length; k++) {
-                
+
                 for (let l = 0; l < keys.length; l++) {
                     if (keys[i] === keys[j] || keys[i] === keys[k] || keys[i] === keys[l] || keys[j] === keys[k] || keys[j] === keys[l] || keys[k] === keys[l]) {
                         continue;
                     } else if ((values[i] + values[j] + values[k] + values[l]) > majorityThreshold) {
-    
+
                         let currentCombo = [keys[i], keys[j], keys[k], keys[l]].sort().join(" + ");
                         let currentComboSeats = [values[i] + values[j] + values[k] + values[l]];
-    
+
                         if (Coalitions.includes(currentCombo)) {
                             continue;
                         } else {
@@ -556,7 +609,7 @@ function calculateFourPartyCoalition(partyResults) {
         }
     }
 
-    
+
 
     createTableFourPartyCoal(Coalitions, CoalitionSeats)
 }
@@ -608,6 +661,31 @@ function createTableFourPartyCoal(coalitionName, totalSeats) {
         tBody.appendChild(rowElement);
     }
     coalitionTableEl.appendChild(tBody);
+
+    // visualization
+    const btnArr = document.querySelectorAll('.VisualizeBtn');
+    const btnLenght = btnArr.length;
+
+    for (let index = 0; index < btnLenght; index++) {
+        btnArr[index].addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const tableRow = e.currentTarget.parentNode.parentNode;
+            const tableRowChildren = tableRow.children;
+
+            const coalitionName = tableRowChildren.item(0).textContent;
+            const coalitionSharePercentage = tableRowChildren.item(2).textContent;
+
+            coalitionShare = Number(coalitionSharePercentage.replace(/[%]/g, ''));
+
+
+            console.log(coalitionName);
+            console.log(coalitionShare);
+
+            drawPieChartCoalition(coalitionName, coalitionShare);
+        })
+    }
+
 
 }
 
