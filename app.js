@@ -25,7 +25,7 @@ let partyResults =
     calcButton.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const turnOut = document.getElementById('Turnout').value;
+        //const turnOut = document.getElementById('Turnout').value;
 
         let gerbResult = Number(gerbEl.value);
         let itnResult = Number(itnEl.value);
@@ -157,14 +157,14 @@ function calculate(party1, party2, party3, party4, party5, party6, party7, party
 
 
     let partyResults = [
-        ['GERB', Math.round(gerbSeats), Math.round(gerbPercentage), party1],
-        ['ITN', Math.round(itnSeats), Math.round(itnPercentage), party2],
-        ['DB', Math.round(dbSeats), Math.round(dbPercentage), party3],
-        ['VAZRAZHDANE', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage), party4],
-        ['BG VAZHOD', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage), party5],
-        ['PP', Math.round(ppSeats), Math.round(ppPercentage), party6],
-        ['DPS', Math.round(dpsSeats), Math.round(dpsPercentage), party7],
-        ['BSP', Math.round(bspSeats), Math.round(bspPercentage), party8],
+        ['ГЕРБ', Math.round(gerbSeats), Math.round(gerbPercentage), party1],
+        ['ИТН', Math.round(itnSeats), Math.round(itnPercentage), party2],
+        ['ДБ', Math.round(dbSeats), Math.round(dbPercentage), party3],
+        ['Възраждане', Math.round(vazrazhdaneSeats), Math.round(vazrazhdanePercentage), party4],
+        ['БГ Възход', Math.round(bgvazhodSeats), Math.round(bgvazhodPercentage), party5],
+        ['ПП', Math.round(ppSeats), Math.round(ppPercentage), party6],
+        ['ДПС', Math.round(dpsSeats), Math.round(dpsPercentage), party7],
+        ['БСП', Math.round(bspSeats), Math.round(bspPercentage), party8],
         total = totalPercent
     ];
 
@@ -278,14 +278,14 @@ function calculateTwoPartyCoalition(partyResults) {
     //to do - make an KVP object from party Results
 
     let inputData = {
-        gerb: partyResults[0][1],
-        itn: partyResults[1][1],
-        db: partyResults[2][1],
-        vazrazhdane: partyResults[3][1],
-        bgvazhod: partyResults[4][1],
-        pp: partyResults[5][1],
-        dps: partyResults[6][1],
-        bsp: partyResults[7][1]
+        ГЕРБ: partyResults[0][1],
+        ИТН: partyResults[1][1],
+        ДБ: partyResults[2][1],
+        Възраждане: partyResults[3][1],
+        БГВъзход: partyResults[4][1],
+        ПП: partyResults[5][1],
+        ДПС: partyResults[6][1],
+        БСП: partyResults[7][1]
     };
 
     const keysRaw = Object.keys(inputData);
@@ -410,14 +410,14 @@ function calculateThreePartyCoalition(partyResults) {
     //to do - make an KVP object from party Results
 
     let inputData = {
-        gerb: partyResults[0][1],
-        itn: partyResults[1][1],
-        db: partyResults[2][1],
-        vazrazhdane: partyResults[3][1],
-        bgvazhod: partyResults[4][1],
-        pp: partyResults[5][1],
-        dps: partyResults[6][1],
-        bsp: partyResults[7][1]
+        ГЕРБ: partyResults[0][1],
+        ИТН: partyResults[1][1],
+        ДБ: partyResults[2][1],
+        Възраждане: partyResults[3][1],
+        БГВъзход: partyResults[4][1],
+        ПП: partyResults[5][1],
+        ДПС: partyResults[6][1],
+        БСП: partyResults[7][1]
     };
 
     const keysRaw = Object.keys(inputData);
@@ -556,14 +556,14 @@ function calculateFourPartyCoalition(partyResults) {
     //to do - make an KVP object from party Results
 
     let inputData = {
-        gerb: partyResults[0][1],
-        itn: partyResults[1][1],
-        db: partyResults[2][1],
-        vazrazhdane: partyResults[3][1],
-        bgvazhod: partyResults[4][1],
-        pp: partyResults[5][1],
-        dps: partyResults[6][1],
-        bsp: partyResults[7][1]
+        ГЕРБ: partyResults[0][1],
+        ИТН: partyResults[1][1],
+        ДБ: partyResults[2][1],
+        Възраждане: partyResults[3][1],
+        БГВъзход: partyResults[4][1],
+        ПП: partyResults[5][1],
+        ДПС: partyResults[6][1],
+        БСП: partyResults[7][1]
     };
 
     const keysRaw = Object.keys(inputData);
