@@ -28,21 +28,21 @@ calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('chartCoalition').innerHTML = '';
     coalitionSize = 2;
-    calculateTwoPartyCoalition(partyResults, coalitionSize);
+    calculatePartyCoalitions(partyResults, coalitionSize);
 });
 
 calcButton3.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('chartCoalition').innerHTML = '';
     coalitionSize = 3;
-    calculateTwoPartyCoalition(partyResults, coalitionSize);
+    calculatePartyCoalitions(partyResults, coalitionSize);
 });
 
 calcButton4.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('chartCoalition').innerHTML = '';
     coalitionSize = 4;
-    calculateTwoPartyCoalition(partyResults, coalitionSize);
+    calculatePartyCoalitions(partyResults, coalitionSize);
 });
 
 resetButton.addEventListener('click', (e) => {
@@ -218,7 +218,36 @@ function createTable(partyResults) {
     partyTableEl.appendChild(tBody);
 }
 
-function calculateTwoPartyCoalition(partyResults, coalitionSize) {
+function drawPieChart(partyResults) {
+
+    let canvasEl = document.createElement('canvas');
+    canvasEl.setAttribute('id', 'pieChart');
+    chartEl.appendChild(canvasEl);
+
+
+    var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
+    var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
+    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow", "crimson"];
+
+    new Chart("pieChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Parliamentary seat distribution"
+            }
+        }
+    });
+}
+
+function calculatePartyCoalitions(partyResults, coalitionSize) {
 
     let inputData = {
         ГЕРБ: partyResults[0][1],
@@ -407,35 +436,6 @@ function createTablePartyCoalitions(coalitionName, totalSeats, coalitionSize) {
         })
     }
 
-}
-
-function drawPieChart(partyResults) {
-
-    let canvasEl = document.createElement('canvas');
-    canvasEl.setAttribute('id', 'pieChart');
-    chartEl.appendChild(canvasEl);
-
-
-    var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
-    var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
-    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow", "crimson"];
-
-    new Chart("pieChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Parliamentary seat distribution"
-            }
-        }
-    });
 }
 
 function drawPieChartCoalition(coalitionName, coalitionSeats) {
