@@ -22,49 +22,7 @@ const chartCoalEl = document.getElementById('chartCoalition');
 
 let coalitionSize = 0;
 
-let partyResults =
-
-    calcButton.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        //const turnOut = document.getElementById('Turnout').value;
-
-        let gerbResult = Number(gerbEl.value);
-        let itnResult = Number(itnEl.value);
-
-        let dbResult = Number(dbEl.value);
-        let vazrazhdaneResult = Number(vazrazhdaneEl.value);
-
-        let bgvazhodResult = Number(bgvazhodEl.value);
-        let ppResult = Number(ppEl.value);
-
-        let dpsResult = Number(dpsEl.value);
-        let bspResult = Number(bspEl.value);
-
-        //returning arr of arr - partyNUM [partyName, seats, percentage]
-        partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
-
-        document.querySelector('.inputField').style.display = 'none';
-        document.querySelector('.resultField').style.display = 'block';
-        document.querySelector('.coalitionField').style.display = 'inline-flex';
-        document.querySelector('.buttons').style.display = 'block';
-
-
-        if (partyResults[8] > 100) {
-            document.querySelector('.inputField').style.display = 'block';
-            document.querySelector('.resultField').style.display = 'none';
-            document.querySelector('.coalitionField').style.display = 'none';
-            document.querySelector('.buttons').style.display = 'none';
-
-            clearFields();
-            return
-        }
-
-        //creates table
-        createTable(partyResults);
-        drawPieChart(partyResults);
-
-    });
+calculatePartyResults();
 
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
@@ -104,6 +62,49 @@ resetButton.addEventListener('click', (e) => {
     chartEl.innerHTML = '';
 });
 
+function calculatePartyResults(){
+    calcButton.addEventListener('click', (e) => {
+        e.preventDefault();
+    
+        //const turnOut = document.getElementById('Turnout').value;
+    
+        let gerbResult = Number(gerbEl.value);
+        let itnResult = Number(itnEl.value);
+    
+        let dbResult = Number(dbEl.value);
+        let vazrazhdaneResult = Number(vazrazhdaneEl.value);
+    
+        let bgvazhodResult = Number(bgvazhodEl.value);
+        let ppResult = Number(ppEl.value);
+    
+        let dpsResult = Number(dpsEl.value);
+        let bspResult = Number(bspEl.value);
+    
+        //returning arr of arr - partyNUM [partyName, seats, percentage]
+        partyResults = calculate(gerbResult, itnResult, dbResult, vazrazhdaneResult, bgvazhodResult, ppResult, dpsResult, bspResult);
+    
+        document.querySelector('.inputField').style.display = 'none';
+        document.querySelector('.resultField').style.display = 'block';
+        document.querySelector('.coalitionField').style.display = 'inline-flex';
+        document.querySelector('.buttons').style.display = 'block';
+    
+    
+        if (partyResults[8] > 100) {
+            document.querySelector('.inputField').style.display = 'block';
+            document.querySelector('.resultField').style.display = 'none';
+            document.querySelector('.coalitionField').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+    
+            clearFields();
+            return
+        }
+    
+        //creates table
+        createTable(partyResults);
+        drawPieChart(partyResults);
+    
+    });
+};
 
 function clearFields() {
     document.getElementById('gerbResult').value = '';
@@ -217,66 +218,6 @@ function createTable(partyResults) {
     partyTableEl.appendChild(tBody);
 }
 
-function drawPieChart(partyResults) {
-
-    let canvasEl = document.createElement('canvas');
-    canvasEl.setAttribute('id', 'pieChart');
-    chartEl.appendChild(canvasEl);
-
-
-    var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
-    var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
-    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow", "crimson"];
-
-    new Chart("pieChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Parliamentary seat distribution"
-            }
-        }
-    });
-}
-
-function drawPieChartCoalition(coalitionName, coalitionSeats) {
-
-    chartCoalEl.innerHTML = '';
-    let canvasEl = document.createElement('canvas');
-    canvasEl.setAttribute('id', 'pieChartCoalition');
-    chartCoalEl.appendChild(canvasEl);
-
-    const oppositionSeats = 100 - coalitionSeats;
-
-    var xValues = [coalitionName, "Opposition"];
-    var yValues = [coalitionSeats, oppositionSeats];
-    var barColors = ["blue", "red"];
-
-    new Chart("pieChartCoalition", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Coalition / Opposition seat distribution"
-            }
-        }
-    });
-}
-
 function calculateTwoPartyCoalition(partyResults, coalitionSize) {
 
     let inputData = {
@@ -307,6 +248,8 @@ function calculateTwoPartyCoalition(partyResults, coalitionSize) {
 
     const majorityThreshold = 121;
 
+    //possible coalitions algorithm.
+
     if(coalitionSize == 2){
         for (let i = 0; i < keys.length; i++) {
 
@@ -328,6 +271,7 @@ function calculateTwoPartyCoalition(partyResults, coalitionSize) {
                 }
             }
         }
+
     }else if(coalitionSize == 3){
         for (let i = 0; i < keys.length; i++) {
 
@@ -351,6 +295,7 @@ function calculateTwoPartyCoalition(partyResults, coalitionSize) {
                 }
             }
         }
+
     }else if(coalitionSize == 4){
         for (let i = 0; i < keys.length; i++) {
 
@@ -379,10 +324,8 @@ function calculateTwoPartyCoalition(partyResults, coalitionSize) {
         }
     }
    
-
     createTablePartyCoalitions(Coalitions, CoalitionSeats, coalitionSize)
 }
-
 
 function createTablePartyCoalitions(coalitionName, totalSeats, coalitionSize) {
 
@@ -443,7 +386,6 @@ function createTablePartyCoalitions(coalitionName, totalSeats, coalitionSize) {
     }
     coalitionTableEl.appendChild(tBody);
 
-
     //draw table
 
     const btnArr = document.querySelectorAll('.VisualizeBtn');
@@ -465,4 +407,64 @@ function createTablePartyCoalitions(coalitionName, totalSeats, coalitionSize) {
         })
     }
 
+}
+
+function drawPieChart(partyResults) {
+
+    let canvasEl = document.createElement('canvas');
+    canvasEl.setAttribute('id', 'pieChart');
+    chartEl.appendChild(canvasEl);
+
+
+    var xValues = [partyResults[0][0], partyResults[1][0], partyResults[2][0], partyResults[3][0], partyResults[4][0], partyResults[5][0], partyResults[6][0], partyResults[7][0]];
+    var yValues = [partyResults[0][2], partyResults[1][2], partyResults[2][2], partyResults[3][2], partyResults[4][2], partyResults[5][2], partyResults[6][2], partyResults[7][2]];
+    var barColors = ["red", "green", "blue", "orange", "brown", "violet", "yellow", "crimson"];
+
+    new Chart("pieChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Parliamentary seat distribution"
+            }
+        }
+    });
+}
+
+function drawPieChartCoalition(coalitionName, coalitionSeats) {
+
+    chartCoalEl.innerHTML = '';
+    let canvasEl = document.createElement('canvas');
+    canvasEl.setAttribute('id', 'pieChartCoalition');
+    chartCoalEl.appendChild(canvasEl);
+
+    const oppositionSeats = 100 - coalitionSeats;
+
+    var xValues = [coalitionName, "Opposition"];
+    var yValues = [coalitionSeats, oppositionSeats];
+    var barColors = ["blue", "red"];
+
+    new Chart("pieChartCoalition", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Coalition / Opposition seat distribution"
+            }
+        }
+    });
 }
