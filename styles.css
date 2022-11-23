@@ -67,7 +67,7 @@ body{
 }
 #header{
     background-color: white;
-    height: 200px;
+    height: 180px;
 }
 #banner{
     display:block;
@@ -81,5 +81,38 @@ body{
     height: 30px;
     background-color:dodgerblue;
 }
+#mainPage{
+    display:inline-flex;
+    background-color: rgb(230, 230, 230);
+    width:100%;
+}
+/* #interfaceBackground{
+    background-color: green;
+    width: 100%;
+} */
+#interface{
+    border-style: ridge;
+    border-color: red;
+    border-radius: 25px;
+    padding: 15px;
+    margin-top: 35px;
+    margin-left: 35px;
+    background-color: white;
+}
+h2{
+    margin: 0px;
+}
+#leftBorder{
+    display: block;
+    background-color: rgb(255, 200, 0);
+    width:30px;
+    height: 1000px;
+}
 
+#leftBorderWhite{
+    display: block;
+    background-color: white;
+    width:30px;
+    height: 1000px;
+}
 

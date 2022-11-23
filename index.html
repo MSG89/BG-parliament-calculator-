@@ -19,86 +19,93 @@
         <div id="topBorder">
         </div>
     </header>
-    <div>
-        <h2>Instructions:
-            <ul>
-                <li>Put in each field the desired election result of each party in the format 99.99</li>
-                <li>click calculate button</li>
-                <li>Use calculate coalition/s buttons to check for mathematically possible coalitions</li>
-                <li>click reset button to change election results</li>
-            </ul>
-        </h2>
-    </div>
-    <div class="inputField">
-        <form id="input">
-            <!-- <label for="Turnout">Voting Turnout:</label>
-            <input type="text" id="Turnout" name="Turnout"><br><br><br><br> -->
-
-
-            <label for="GERB">ГЕРБ:</label>
-            <input type="text" id="gerbResult" name="gerbResult"><br><br>
-
-            <label for="ITN">ИТН:</label>
-            <input type="text" id="ITNResult" name="ITNResult"><br><br>
-
-            <label for="DB">ДБ:</label>
-            <input type="text" id="dbResult" name="dbResult"><br><br>
-
-            <label for="vazrazhdane">Възраждане:</label>
-            <input type="text" id="vazrazhdaneResult" name="vazrazhdaneResult"><br><br>
-
-            <label for="BGVAZHOD">БГ Възход:</label>
-            <input type="text" id="bgvazhodResult" name="bgvazhodResult"><br><br>
-
-            <label for="PP">ПП:</label>
-            <input type="text" id="ppResult" name="ppResult"><br><br>
-
-            <label for="dps">ДПС:</label>
-            <input type="text" id="dpsResult" name="dpsResult"><br><br>
-
-            <label for="bsp">БСП:</label>
-            <input type="text" id="bspResult" name="bspResult"><br><br>
-
-            <input type="submit" value="Calculate" id="calcButton" name="calcButton">
-        </form>
-    </div>
-    <div class='results'>
-        <div class="resultField">
-            <table id="partyTable">
-                <!-- <caption>Parliament seat distribution</caption>
-                <tr>
-                    <th>Party</th>
-                    <th>Seats</th>
-                    <th>Percentage of all Seats</th>
-                </tr>
-                -->
-            </table>
-            <div id="chart">
+    <div id="mainPage">
+        <div id="leftBorderWhite"></div>
+        <div id="leftBorder"></div>
+        <div id="inferfaceBackground">
+            <div id="interface">
+                <div>
+                    <h2>Instructions:
+                        <ul>
+                            <li>Put in each field the desired election result of each party in the format 99.99</li>
+                            <li>click calculate button</li>
+                            <li>Use calculate coalition/s buttons to check for mathematically possible coalitions</li>
+                            <li>click reset button to change election results</li>
+                        </ul>
+                    </h2>
+                </div>
+                <div class="inputField">
+                    <form id="input">
+                        <!-- <label for="Turnout">Voting Turnout:</label>
+                        <input type="text" id="Turnout" name="Turnout"><br><br><br><br> -->
+        
+        
+                        <label for="GERB">ГЕРБ:</label>
+                        <input type="text" id="gerbResult" name="gerbResult"><br><br>
+        
+                        <label for="ITN">ИТН:</label>
+                        <input type="text" id="ITNResult" name="ITNResult"><br><br>
+        
+                        <label for="DB">ДБ:</label>
+                        <input type="text" id="dbResult" name="dbResult"><br><br>
+        
+                        <label for="vazrazhdane">Възраждане:</label>
+                        <input type="text" id="vazrazhdaneResult" name="vazrazhdaneResult"><br><br>
+        
+                        <label for="BGVAZHOD">БГ Възход:</label>
+                        <input type="text" id="bgvazhodResult" name="bgvazhodResult"><br><br>
+        
+                        <label for="PP">ПП:</label>
+                        <input type="text" id="ppResult" name="ppResult"><br><br>
+        
+                        <label for="dps">ДПС:</label>
+                        <input type="text" id="dpsResult" name="dpsResult"><br><br>
+        
+                        <label for="bsp">БСП:</label>
+                        <input type="text" id="bspResult" name="bspResult"><br><br>
+        
+                        <input type="submit" value="Calculate" id="calcButton" name="calcButton">
+                    </form>
+                </div>
+                <div class='results'>
+                    <div class="resultField">
+                        <table id="partyTable">
+                            <!-- <caption>Parliament seat distribution</caption>
+                            <tr>
+                                <th>Party</th>
+                                <th>Seats</th>
+                                <th>Percentage of all Seats</th>
+                            </tr>
+                            -->
+                        </table>
+                        <div id="chart">
+                        </div>
+        
+                    </div>
+                    <div class="coalitionField">
+        
+                        <table id="coalitionTable">
+                        </table><br>
+                        <div id="chartCoalition">
+                        </div>
+        
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" value="Reset" id="resetButton" name="resetButton"><br><br>
+                        <input type="submit" value="Calculate possible two party coalitions" id="calcButton2"
+                            name="calcButton2"><br>
+                        <input type="submit" value="Calculate possible three party coalitions" id="calcButton3"
+                            name="calcButton3"><br>
+                        <input type="submit" value="Calculate possible four party coalitions" id="calcButton4"
+                            name="calcButton4"><br>
+        
+                    </div>
+        
+                </div>
             </div>
-
-        </div>
-        <div class="coalitionField">
-
-            <table id="coalitionTable">
-            </table><br>
-            <div id="chartCoalition">
-            </div>
-
-        </div>
-        <div class="buttons">
-            <input type="submit" value="Reset" id="resetButton" name="resetButton"><br><br>
-            <input type="submit" value="Calculate possible two party coalitions" id="calcButton2"
-                name="calcButton2"><br>
-            <input type="submit" value="Calculate possible three party coalitions" id="calcButton3"
-                name="calcButton3"><br>
-            <input type="submit" value="Calculate possible four party coalitions" id="calcButton4"
-                name="calcButton4"><br>
-
         </div>
 
     </div>
-
-
 
     <script src="app.js"></script>
 </body>
