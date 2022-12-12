@@ -1,4 +1,8 @@
 
+const toolCalcPercentage = document.getElementById('calcPercentage');
+const toolCalcVoters = document.getElementById('calcAbsoluteNum');
+const homeViewBtn = document.getElementById('HomeBtn');
+
 const calcButton = document.getElementById('calcButton');
 const resetButton = document.getElementById('resetButton');
 
@@ -40,6 +44,33 @@ let coalitionSize = 0;
 
 calculatePartyResults();
 
+homeViewBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    clearFields();
+    document.getElementById('Home').style.display = 'block';
+    document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.querySelector('.inputField').style.display = 'none';
+});
+
+toolCalcPercentage.addEventListener('click',(e)=>{
+    e.preventDefault();
+    document.querySelector('.inputField').style.display = 'inline';
+    document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.getElementById('ToolCalcPercentage').style.display = 'block';
+    document.getElementById('Home').style.display = 'none';
+    clearFields();
+});
+
+toolCalcVoters.addEventListener('click',(e) =>{
+    e.preventDefault();
+    document.querySelector('.inputField').style.display = 'inline';
+    document.getElementById('ToolCalcVoters').style.display = 'block';
+    document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('Home').style.display = 'none';
+    clearFields();
+})
+
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('chartCoalition').innerHTML = '';
@@ -64,18 +95,9 @@ calcButton4.addEventListener('click', (e) => {
 resetButton.addEventListener('click', (e) => {
     e.preventDefault();
 
-    document.querySelector('.inputField').style.display = 'block';
-    document.querySelector('.resultField').style.display = 'none';
-    document.querySelector('.coalitionField').style.display = 'none';
-    document.querySelector('.buttons').style.display = 'none';
-    document.getElementById('chartCoalition').innerHTML = '';
 
-
-    partyTableEl.innerHTML = '';
-    coalitionTableEl.innerHTML = '';
-    coalitionTableEl.style.display = 'none';
     clearFields();
-    chartEl.innerHTML = '';
+
 });
 
 function calculatePartyResults() {
@@ -150,6 +172,18 @@ function clearFields() {
     document.getElementById('party6result').value = '';
     document.getElementById('party7result').value = '';
     document.getElementById('party8result').value = '';
+
+    document.querySelector('.inputField').style.display = 'block';
+    document.querySelector('.resultField').style.display = 'none';
+    document.querySelector('.coalitionField').style.display = 'none';
+    document.querySelector('.buttons').style.display = 'none';
+    document.getElementById('chartCoalition').innerHTML = '';
+
+
+    partyTableEl.innerHTML = '';
+    coalitionTableEl.innerHTML = '';
+    coalitionTableEl.style.display = 'none';
+    chartEl.innerHTML = '';
 }
 
 function calculate(

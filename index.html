@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Styles.css">
     <title>BG Parliament majority calculator</title>
 
 </head>
@@ -16,28 +16,64 @@
         <div id="banner" href="./Logo.jpg"></div>
         <!-- <h1>Simple calculator for checking possible majorities in BG pariament and seat distribution as per vote tally.
         </h1> -->
-        <div id="topBorder">
-        </div>
     </header>
-    <div id="mainPage">
-        <div id="leftBorderWhite"></div>
-        <div id="leftBorder"></div>
+    <nav>
+        <ul>
+            <li id="HomeBtn">Home</li>
+            <li>
+                <div class="dropdown">
+                <div class="dropbtn">Tools</div>
+                <div class="dropdown-content">
+                  <div id="calcPercentage">Calculator based on percentage of votes won</div>
+                  <div id="calcAbsoluteNum">Calculator based on absolute voters won</div>
+                </div>
+              </div></li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+    <main>
         <div id="inferfaceBackground">
             <div id="interface">
-                <div>
-                    <h2>Instructions:
+                <section id="Home">
+                    <h2>
                         <ul>
-                            <li>Put in each field the desired election result of each party in the format 99.99</li>
-                            <li>click calculate button</li>
-                            <li>Use calculate coalition/s buttons to check for mathematically possible coalitions</li>
-                            <li>click reset button to change election results</li>
+                            <p>Welcome to the Bulgarian parliament elections calculator website !</p>
+
+                            You can use one of our calculators to dry run elections for the Bulgarian national assembly with different inputs.<br>
+                            Please hover your cursor over <em>Tools</em> button in the navbar and select one of the calculators.
                         </ul>
                     </h2>
-                </div>
+                </section>
+                <section id="ToolCalcPercentage">
+                    <h2>
+                        <ul>
+                            <p>Bulgarian parliament calculator based on percentage of votes won per party</p>
+
+                            In the following field you can input the parties you want to dry run an election.<br>
+                            You can either use the default ones or change them to your preference.<br>
+                            Total percentage has to be less than 100 and at least one party has to have more than 4 percent.<br>
+                            Once ready, click calculate button to get the results for which party gets in the parliament.<br>
+                            Use the additional buttons to either check for possible coalitions or reset view back to the initial screen.<br>
+                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
+                        </ul>
+                    </h2>
+                </section>
+                <section id="ToolCalcVoters">
+                    <h2>
+                        <ul>
+                            <p>Bulgarian parliament calculator based on percentage of voters won per party</p>
+
+                            INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
+                        </ul>
+                    </h2>
+                </section>
                 <div class="inputField">
                     <form id="input">
-                        <!-- <label for="Turnout">Voting Turnout:</label>
-                        <input type="text" id="Turnout" name="Turnout"><br><br><br><br> -->
         
                         <input type="text" id="party1name" name="party1name" value="ГЕРБ">
                         <input type="text" id="party1result" name="party1result" placeholder="0.00"><br><br>
@@ -104,7 +140,10 @@
             </div>
         </div>
 
-    </div>
+    </main>
+    <footer>
+        <p>Copyright MSG89 2022. All rights reserved.</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
