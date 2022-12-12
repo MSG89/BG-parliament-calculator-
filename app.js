@@ -45,7 +45,7 @@ let coalitionSize = 0;
 calculatePartyResults();
 
 //homeview
-homeViewBtn.addEventListener('click',(e)=>{
+homeViewBtn.addEventListener('click', (e) => {
     e.preventDefault();
     clearFields();
     document.getElementById('Home').style.display = 'block';
@@ -55,7 +55,7 @@ homeViewBtn.addEventListener('click',(e)=>{
 });
 
 //VoteShareCalcView
-toolCalcPercentage.addEventListener('click',(e)=>{
+toolCalcPercentage.addEventListener('click', (e) => {
     e.preventDefault();
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('ToolCalcVoters').style.display = 'none';
@@ -65,7 +65,7 @@ toolCalcPercentage.addEventListener('click',(e)=>{
 });
 
 //AbsoluteVotersCalcView
-toolCalcVoters.addEventListener('click',(e) =>{
+toolCalcVoters.addEventListener('click', (e) => {
     e.preventDefault();
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('ToolCalcVoters').style.display = 'block';
@@ -197,67 +197,66 @@ function calculate(
     party5, party5name,
     party6, party6name,
     party7, party7name,
-    party8, party8name) 
-    {
+    party8, party8name) {
 
-        let totalPercent = party1 + party2 + party3 + party4 + party5 + party6 + party7 + party8;
-        if (totalPercent > 100) {
-            alert('total percentage result must be equal or less than 100');
-            wrongInput = true;
-        }else if(totalPercent < 4){
-            alert('at least one party must have more than 4 percent of the vote');
-            wrongInput = true;
+    let totalPercent = party1 + party2 + party3 + party4 + party5 + party6 + party7 + party8;
+    if (totalPercent > 100) {
+        alert('total percentage result must be equal or less than 100');
+        wrongInput = true;
+    } else if (totalPercent < 4) {
+        alert('at least one party must have more than 4 percent of the vote');
+        wrongInput = true;
+    }
+
+    let totalValidVote = 0;
+    let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
+    for (let i = 0; i < validPercentageArr.length; i++) {
+        if (validPercentageArr[i] < 4) {
+            validPercentageArr[i] = 0;
+        } else {
+            totalValidVote += validPercentageArr[i];
         }
-
-        let totalValidVote = 0;
-        let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
-        for (let i = 0; i < validPercentageArr.length; i++) {
-            if (validPercentageArr[i] < 4) {
-                validPercentageArr[i] = 0;
-            } else {
-                totalValidVote += validPercentageArr[i];
-            }
-        }
+    }
 
 
-        let party1Seats = (240 * validPercentageArr[0]) / totalValidVote;
-        let party1Percentage = (party1Seats / 240) * 100;
+    let party1Seats = (240 * validPercentageArr[0]) / totalValidVote;
+    let party1Percentage = (party1Seats / 240) * 100;
 
-        let party2Seats = (240 * validPercentageArr[1]) / totalValidVote;
-        let party2Percentage = (party2Seats / 240) * 100;
+    let party2Seats = (240 * validPercentageArr[1]) / totalValidVote;
+    let party2Percentage = (party2Seats / 240) * 100;
 
-        let party3Seats = (240 * validPercentageArr[2]) / totalValidVote;
-        let party3Percentage = (party3Seats / 240) * 100;
+    let party3Seats = (240 * validPercentageArr[2]) / totalValidVote;
+    let party3Percentage = (party3Seats / 240) * 100;
 
-        let party4Seats = (240 * validPercentageArr[3]) / totalValidVote;
-        let party4Percentage = (party4Seats / 240) * 100;
+    let party4Seats = (240 * validPercentageArr[3]) / totalValidVote;
+    let party4Percentage = (party4Seats / 240) * 100;
 
-        let party5Seats = (240 * validPercentageArr[4]) / totalValidVote;
-        let party5Percentage = (party5Seats / 240) * 100;
+    let party5Seats = (240 * validPercentageArr[4]) / totalValidVote;
+    let party5Percentage = (party5Seats / 240) * 100;
 
-        let party6Seats = (240 * validPercentageArr[5]) / totalValidVote;
-        let party6Percentage = (party6Seats / 240) * 100;
+    let party6Seats = (240 * validPercentageArr[5]) / totalValidVote;
+    let party6Percentage = (party6Seats / 240) * 100;
 
-        let party7Seats = (240 * validPercentageArr[6]) / totalValidVote;
-        let party7Percentage = (party7Seats / 240) * 100;
+    let party7Seats = (240 * validPercentageArr[6]) / totalValidVote;
+    let party7Percentage = (party7Seats / 240) * 100;
 
-        let party8Seats = (240 * validPercentageArr[7]) / totalValidVote;
-        let party8Percentage = (party8Seats / 240) * 100;
+    let party8Seats = (240 * validPercentageArr[7]) / totalValidVote;
+    let party8Percentage = (party8Seats / 240) * 100;
 
 
-        let partyResults = [
-            [party1name, Math.round(party1Seats), Math.round(party1Percentage), party1],
-            [party2name, Math.round(party2Seats), Math.round(party2Percentage), party2],
-            [party3name, Math.round(party3Seats), Math.round(party3Percentage), party3],
-            [party4name, Math.round(party4Seats), Math.round(party4Percentage), party4],
-            [party5name, Math.round(party5Seats), Math.round(party5Percentage), party5],
-            [party6name, Math.round(party6Seats), Math.round(party6Percentage), party6],
-            [party7name, Math.round(party7Seats), Math.round(party7Percentage), party7],
-            [party8name, Math.round(party8Seats), Math.round(party8Percentage), party8],
-            total = totalPercent
-        ];
+    let partyResults = [
+        [party1name, Math.round(party1Seats), Math.round(party1Percentage), party1],
+        [party2name, Math.round(party2Seats), Math.round(party2Percentage), party2],
+        [party3name, Math.round(party3Seats), Math.round(party3Percentage), party3],
+        [party4name, Math.round(party4Seats), Math.round(party4Percentage), party4],
+        [party5name, Math.round(party5Seats), Math.round(party5Percentage), party5],
+        [party6name, Math.round(party6Seats), Math.round(party6Percentage), party6],
+        [party7name, Math.round(party7Seats), Math.round(party7Percentage), party7],
+        [party8name, Math.round(party8Seats), Math.round(party8Percentage), party8],
+        total = totalPercent
+    ];
 
-        return partyResults
+    return partyResults
 }
 
 function createTable(partyResults) {
@@ -492,7 +491,7 @@ function createTablePartyCoalitions(coalitionName, totalSeats, coalitionSize) {
         tdElement2.textContent = `${Math.round(((totalSeats[i] / 240) * 100))} %`;
         rowElement.appendChild(tdElement2);
 
-        tdElement3.innerHTML = `<input type="submit" value="Visualize" class="VisualizeBtn" name="VisualizeBtn"></input>`
+        tdElement3.innerHTML = `<input type="submit" value="Visualize" class="VisualizeBtn btn" name="VisualizeBtn"></input>`
         rowElement.appendChild(tdElement3);
 
         tBody.appendChild(rowElement);

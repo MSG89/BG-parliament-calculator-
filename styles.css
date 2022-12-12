@@ -92,6 +92,7 @@ h2 {
 
 .inputField {
     display: none;
+    padding-left:40px;
 }
 
 .results {
@@ -197,4 +198,14 @@ footer {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.btn{
+    background-color: whitesmoke;
+    border-radius: 50px;
+    margin:2px;
+}
+.btn:hover{
+    background-color: rgb(244, 228, 0);
+    cursor: pointer;
 }
