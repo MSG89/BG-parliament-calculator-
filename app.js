@@ -44,6 +44,7 @@ let coalitionSize = 0;
 
 calculatePartyResults();
 
+//homeview
 homeViewBtn.addEventListener('click',(e)=>{
     e.preventDefault();
     clearFields();
@@ -53,6 +54,7 @@ homeViewBtn.addEventListener('click',(e)=>{
     document.querySelector('.inputField').style.display = 'none';
 });
 
+//VoteShareCalcView
 toolCalcPercentage.addEventListener('click',(e)=>{
     e.preventDefault();
     document.querySelector('.inputField').style.display = 'inline';
@@ -62,6 +64,7 @@ toolCalcPercentage.addEventListener('click',(e)=>{
     clearFields();
 });
 
+//AbsoluteVotersCalcView
 toolCalcVoters.addEventListener('click',(e) =>{
     e.preventDefault();
     document.querySelector('.inputField').style.display = 'inline';
