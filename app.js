@@ -221,7 +221,7 @@ function calculate(
         ];
 
         return partyResults
-    }
+}
 
 function createTable(partyResults) {
     let captionEl = document.createElement('caption');
@@ -295,7 +295,6 @@ function drawPieChart(partyResults) {
 }
 
 function calculatePartyCoalitions(partyResults, coalitionSize) {
-
 
     let inputData = {
         [partyResults[0][0]]: partyResults[0][1],
