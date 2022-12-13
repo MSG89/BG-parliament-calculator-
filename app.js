@@ -40,45 +40,33 @@ const coalitionTableEl = document.getElementById('coalitionTable');
 const chartEl = document.getElementById('chart');
 const chartCoalEl = document.getElementById('chartCoalition');
 
+
+
+
+
 let wrongInput = false;
 let coalitionSize = 0;
-
-
 
 //homeview
 homeViewBtn.addEventListener('click', (e) => {
     e.preventDefault();
     clearFields();
-    document.getElementById('Home').style.display = 'block';
-    document.getElementById('ToolCalcPercentage').style.display = 'none';
-    document.getElementById('ToolCalcVoters').style.display = 'none';
-    document.querySelector('.inputField').style.display = 'none';
-    document.querySelector('.inputField2').style.display = 'none';
+    homeView();
 });
 
 //VoteShareCalcView
 toolCalcPercentage.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('.inputField').style.display = 'inline';
-    document.querySelector('.inputField2').style.display = 'none';
-    document.getElementById('ToolCalcVoters').style.display = 'none';
-    document.getElementById('ToolCalcPercentage').style.display = 'block';
-    document.getElementById('Home').style.display = 'none';
     clearFields();
+    calculatorVotingResView();
 });
 
 //AbsoluteVotersCalcView
 toolCalcVoters.addEventListener('click', (e) => {
     e.preventDefault();
     clearFields();
-    document.querySelector('.inputField').style.display = 'none';
-    document.querySelector('.inputField2').style.display = 'inline';
-    document.getElementById('ToolCalcVoters').style.display = 'block';
-    document.getElementById('ToolCalcPercentage').style.display = 'none';
-    document.getElementById('Home').style.display = 'none';
-
+    calculatorVoterTurnoutView();
 })
-
 
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
@@ -138,6 +126,7 @@ function calculatePartyResults() {
         let party8result = Number(party8El.value);
         const party8name = party8nameEl.value;
 
+        // for voting results calc below
         //returning arr of arr - partyNUM [partyName, seats, percentage]
         partyResults = calculate(
             party1result, party1name,
@@ -555,4 +544,25 @@ function drawPieChartCoalition(coalitionName, coalitionSeats) {
             }
         }
     });
+}
+
+function homeView() {
+    document.getElementById('Home').style.display = 'block';
+    document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.querySelector('.inputField').style.display = 'none';
+}
+function calculatorVotingResView() {
+    document.getElementById('Home').style.display = 'none';
+    document.getElementById('ToolCalcPercentage').style.display = 'inline';
+    document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.querySelector('.inputField').style.display = 'inline';
+    document.getElementById('inputTurnout').style.display = 'none';
+}
+function calculatorVoterTurnoutView() {
+    document.getElementById('Home').style.display = 'none';
+    document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('ToolCalcVoters').style.display = 'inline';
+    document.querySelector('.inputField').style.display = 'inline';
+    document.getElementById('inputTurnout').style.display = 'inline';
 }
