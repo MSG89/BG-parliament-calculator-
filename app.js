@@ -4,6 +4,7 @@ const toolCalcVoters = document.getElementById('calcAbsoluteNum');
 const homeViewBtn = document.getElementById('HomeBtn');
 
 const calcButton = document.getElementById('calcButton');
+const calcButtonV = document.getElementById('calcButtonV');
 const resetButton = document.getElementById('resetButton');
 
 const calcButton2 = document.getElementById('calcButton2');
@@ -42,7 +43,7 @@ const chartCoalEl = document.getElementById('chartCoalition');
 let wrongInput = false;
 let coalitionSize = 0;
 
-calculatePartyResults();
+
 
 //homeview
 homeViewBtn.addEventListener('click', (e) => {
@@ -52,12 +53,14 @@ homeViewBtn.addEventListener('click', (e) => {
     document.getElementById('ToolCalcPercentage').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'none';
     document.querySelector('.inputField').style.display = 'none';
+    document.querySelector('.inputField2').style.display = 'none';
 });
 
 //VoteShareCalcView
 toolCalcPercentage.addEventListener('click', (e) => {
     e.preventDefault();
     document.querySelector('.inputField').style.display = 'inline';
+    document.querySelector('.inputField2').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'none';
     document.getElementById('ToolCalcPercentage').style.display = 'block';
     document.getElementById('Home').style.display = 'none';
@@ -67,12 +70,15 @@ toolCalcPercentage.addEventListener('click', (e) => {
 //AbsoluteVotersCalcView
 toolCalcVoters.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('.inputField').style.display = 'inline';
+    clearFields();
+    document.querySelector('.inputField').style.display = 'none';
+    document.querySelector('.inputField2').style.display = 'inline';
     document.getElementById('ToolCalcVoters').style.display = 'block';
     document.getElementById('ToolCalcPercentage').style.display = 'none';
     document.getElementById('Home').style.display = 'none';
-    clearFields();
+
 })
+
 
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
@@ -97,17 +103,16 @@ calcButton4.addEventListener('click', (e) => {
 
 resetButton.addEventListener('click', (e) => {
     e.preventDefault();
-
-
     clearFields();
 
 });
+
+calculatePartyResults();
 
 function calculatePartyResults() {
     calcButton.addEventListener('click', (e) => {
         e.preventDefault();
         wrongInput = false;
-        //const turnOut = document.getElementById('Turnout').value;
 
         let party1result = Number(party1El.value);
         const party1name = party1nameEl.value;
