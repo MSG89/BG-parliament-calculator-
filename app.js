@@ -43,6 +43,8 @@ const chartCoalEl = document.getElementById('chartCoalition');
 let wrongInput = false;
 let coalitionSize = 0;
 
+const barrierForEntry = 4;
+
 let currentCalc = 0;
 
 //homeview
@@ -155,15 +157,31 @@ function calculatePartyResults() {
             //creates table
             createTable(partyResults);
             drawPieChart(partyResults);
-        }else if(currentCalc === 2){
+
+        } else if (currentCalc === 2) {
             const totalVoters = Number(document.getElementById("totalVoters").value);
             const voterTurnout = Number(document.getElementById("voterTurnout").value);
             const percentIneligebleBulletins = Number(document.getElementById("ineligebleBulletins").value);
 
-            const totalEligebleVotes = (totalVoters*(voterTurnout/100))*(1-(percentIneligebleBulletins/100));
-            console.log(totalEligebleVotes); 
+            const totalEligebleVotes = (totalVoters * (voterTurnout / 100)) * (1 - (percentIneligebleBulletins / 100));
+            partyResults = calculateForVoters(
+                party1result, party1name,
+                party2result, party2name,
+                party3result, party3name,
+                party4result, party4name,
+                party5result, party5name,
+                party6result, party6name,
+                party7result, party7name,
+                party8result, party8name,
+                totalEligebleVotes);
 
+            document.querySelector('.inputField').style.display = 'none';
+            document.querySelector('.resultField').style.display = 'block';
+            document.querySelector('.coalitionField').style.display = 'inline-flex';
+            document.querySelector('.buttons').style.display = 'block';
 
+            createTable(partyResults);
+            drawPieChart(partyResults);
         }
 
 
@@ -207,7 +225,7 @@ function calculate(
     if (totalPercent > 100) {
         alert('total percentage result must be equal or less than 100');
         wrongInput = true;
-    } else if (totalPercent < 4) {
+    } else if (totalPercent < barrierForEntry) {
         alert('at least one party must have more than 4 percent of the vote');
         wrongInput = true;
     }
@@ -215,7 +233,7 @@ function calculate(
     let totalValidVote = 0;
     let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
     for (let i = 0; i < validPercentageArr.length; i++) {
-        if (validPercentageArr[i] < 4) {
+        if (validPercentageArr[i] < barrierForEntry) {
             validPercentageArr[i] = 0;
         } else {
             totalValidVote += validPercentageArr[i];
@@ -261,6 +279,76 @@ function calculate(
     ];
 
     return partyResults
+}
+
+function calculateForVoters(
+    party1, party1name,
+    party2, party2name,
+    party3, party3name,
+    party4, party4name,
+    party5, party5name,
+    party6, party6name,
+    party7, party7name,
+    party8, party8name,
+    totalEligebleVotes) {
+
+    //needs validation for correct input
+
+    let totalValidVotes = 0;
+    let totalLostVotes = 0;
+    const minimumVotesPastPost = totalEligebleVotes * (barrierForEntry / 100);
+
+    let partyVotersArr = [party1, party2, party3, party4, party5, party6, party7, party8];
+    for (let i = 0; i < partyVotersArr.length; i++) {
+        if (partyVotersArr[i] >= minimumVotesPastPost) {
+            totalValidVotes += partyVotersArr[i];
+        } else {
+            totalLostVotes += partyVotersArr[i];
+            partyVotersArr[i] = 0;
+        }
+    }
+    //calculates minimum number of votes to past the (4%) barrier for entry
+
+    const party1Share = (partyVotersArr[0] / totalValidVotes) * 100;
+    const party1Seats = (party1Share * 240)/100;
+
+    const party2Share = (partyVotersArr[1]  / totalValidVotes) * 100;
+    const party2Seats = (party2Share * 240)/100;
+
+    const party3Share = (partyVotersArr[2]  / totalValidVotes) * 100;
+    const party3Seats = (party3Share * 240)/100;
+
+    const party4Share = (partyVotersArr[3]  / totalValidVotes) * 100;
+    const party4Seats = (party4Share * 240)/100;
+
+    const party5Share = (partyVotersArr[4]  / totalValidVotes) * 100;
+    const party5Seats = (party5Share * 240)/100;
+
+    const party6Share = (partyVotersArr[5]  / totalValidVotes) * 100;
+    const party6Seats = (party6Share * 240)/100;
+
+    const party7Share = (partyVotersArr[6]  / totalValidVotes) * 100;
+    const party7Seats = (party7Share * 240)/100;
+
+    const party8Share = (partyVotersArr[7]  / totalValidVotes) * 100;
+    const party8Seats = (party8Share * 240)/100;
+
+    console.log(party1Share);
+    console.log(party1Seats);
+
+    let partyResults = [
+        [party1name, Math.round(party1Seats), Math.round(party1Share), party1],
+        [party2name, Math.round(party2Seats), Math.round(party2Share), party2],
+        [party3name, Math.round(party3Seats), Math.round(party3Share), party3],
+        [party4name, Math.round(party4Seats), Math.round(party4Share), party4],
+        [party5name, Math.round(party5Seats), Math.round(party5Share), party5],
+        [party6name, Math.round(party6Seats), Math.round(party6Share), party6],
+        [party7name, Math.round(party7Seats), Math.round(party7Share), party7],
+        [party8name, Math.round(party8Seats), Math.round(party8Share), party8],
+        totalLostVotes = totalLostVotes
+    ];
+
+    return partyResults;
 }
 
 function createTable(partyResults) {
