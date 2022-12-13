@@ -40,12 +40,10 @@ const coalitionTableEl = document.getElementById('coalitionTable');
 const chartEl = document.getElementById('chart');
 const chartCoalEl = document.getElementById('chartCoalition');
 
-
-
-
-
 let wrongInput = false;
 let coalitionSize = 0;
+
+let currentCalc = 0;
 
 //homeview
 homeViewBtn.addEventListener('click', (e) => {
@@ -126,36 +124,47 @@ function calculatePartyResults() {
         let party8result = Number(party8El.value);
         const party8name = party8nameEl.value;
 
-        // for voting results calc below
-        //returning arr of arr - partyNUM [partyName, seats, percentage]
-        partyResults = calculate(
-            party1result, party1name,
-            party2result, party2name,
-            party3result, party3name,
-            party4result, party4name,
-            party5result, party5name,
-            party6result, party6name,
-            party7result, party7name,
-            party8result, party8name);
+        if (currentCalc === 1) {
+            // for voting results calc below
+            //returning arr of arr - partyNUM [partyName, seats, percentage]
+            partyResults = calculate(
+                party1result, party1name,
+                party2result, party2name,
+                party3result, party3name,
+                party4result, party4name,
+                party5result, party5name,
+                party6result, party6name,
+                party7result, party7name,
+                party8result, party8name);
 
-        document.querySelector('.inputField').style.display = 'none';
-        document.querySelector('.resultField').style.display = 'block';
-        document.querySelector('.coalitionField').style.display = 'inline-flex';
-        document.querySelector('.buttons').style.display = 'block';
+            document.querySelector('.inputField').style.display = 'none';
+            document.querySelector('.resultField').style.display = 'block';
+            document.querySelector('.coalitionField').style.display = 'inline-flex';
+            document.querySelector('.buttons').style.display = 'block';
 
-        if (wrongInput) {
-            document.querySelector('.inputField').style.display = 'block';
-            document.querySelector('.resultField').style.display = 'none';
-            document.querySelector('.coalitionField').style.display = 'none';
-            document.querySelector('.buttons').style.display = 'none';
+            if (wrongInput) {
+                document.querySelector('.inputField').style.display = 'block';
+                document.querySelector('.resultField').style.display = 'none';
+                document.querySelector('.coalitionField').style.display = 'none';
+                document.querySelector('.buttons').style.display = 'none';
 
-            clearFields();
-            return
+                clearFields();
+                return
+            }
+
+            //creates table
+            createTable(partyResults);
+            drawPieChart(partyResults);
+        }else if(currentCalc === 2){
+            const totalVoters = Number(document.getElementById("totalVoters").value);
+            const voterTurnout = Number(document.getElementById("voterTurnout").value);
+            const percentIneligebleBulletins = Number(document.getElementById("ineligebleBulletins").value);
+
+            console.log(totalVoters);
+            console.log(voterTurnout);
+            console.log(percentIneligebleBulletins);
         }
 
-        //creates table
-        createTable(partyResults);
-        drawPieChart(partyResults);
 
     });
 };
@@ -551,6 +560,7 @@ function homeView() {
     document.getElementById('ToolCalcPercentage').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'none';
     document.querySelector('.inputField').style.display = 'none';
+    currentCalc = 0;
 }
 function calculatorVotingResView() {
     document.getElementById('Home').style.display = 'none';
@@ -558,6 +568,7 @@ function calculatorVotingResView() {
     document.getElementById('ToolCalcVoters').style.display = 'none';
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('inputTurnout').style.display = 'none';
+    currentCalc = 1;
 }
 function calculatorVoterTurnoutView() {
     document.getElementById('Home').style.display = 'none';
@@ -565,4 +576,5 @@ function calculatorVoterTurnoutView() {
     document.getElementById('ToolCalcVoters').style.display = 'inline';
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('inputTurnout').style.display = 'inline';
+    currentCalc = 2;
 }
