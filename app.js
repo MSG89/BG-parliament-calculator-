@@ -160,9 +160,10 @@ function calculatePartyResults() {
             const voterTurnout = Number(document.getElementById("voterTurnout").value);
             const percentIneligebleBulletins = Number(document.getElementById("ineligebleBulletins").value);
 
-            console.log(totalVoters);
-            console.log(voterTurnout);
-            console.log(percentIneligebleBulletins);
+            const totalEligebleVotes = (totalVoters*(voterTurnout/100))*(1-(percentIneligebleBulletins/100));
+            console.log(totalEligebleVotes); 
+
+
         }
 
 

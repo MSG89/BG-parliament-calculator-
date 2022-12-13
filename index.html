@@ -22,12 +22,13 @@
             <li id="HomeBtn">Home</li>
             <li>
                 <div class="dropdown">
-                <div class="dropbtn">Tools</div>
-                <div class="dropdown-content">
-                  <div id="calcPercentage">Calculator based on percentage of votes won</div>
-                  <div id="calcAbsoluteNum">Calculator based on absolute voters won</div>
+                    <div class="dropbtn">Tools</div>
+                    <div class="dropdown-content">
+                        <div id="calcPercentage">Calculator based on percentage of votes won</div>
+                        <div id="calcAbsoluteNum">Calculator based on absolute voters won</div>
+                    </div>
                 </div>
-              </div></li>
+            </li>
             <li>Contact</li>
         </ul>
     </nav>
@@ -39,8 +40,10 @@
                         <ul>
                             <p>Welcome to the Bulgarian parliament elections calculator website !</p>
 
-                            You can use one of our calculators to dry run elections for the Bulgarian national assembly with different inputs.<br>
-                            Please hover your cursor over <em>Tools</em> button in the navbar and select one of the calculators.
+                            You can use one of our calculators to dry run elections for the Bulgarian national assembly
+                            with different inputs.<br>
+                            Please hover your cursor over <em>Tools</em> button in the navbar and select one of the
+                            calculators.
                         </ul>
                     </h2>
                 </section>
@@ -51,9 +54,12 @@
 
                             In the following field you can input the parties you want to dry run an election.<br>
                             You can either use the default ones or change them to your preference.<br>
-                            Total percentage has to be less than 100 and at least one party has to have more than 4 percent.<br>
-                            Once ready, click calculate button to get the results for which party gets in the parliament.<br>
-                            Use the additional buttons to either check for possible coalitions or reset view back to the initial screen.<br>
+                            Total percentage has to be less than 100 and at least one party has to have more than 4
+                            percent.<br>
+                            Once ready, click calculate button to get the results for which party gets in the
+                            parliament.<br>
+                            Use the additional buttons to either check for possible coalitions or reset view back to the
+                            initial screen.<br>
                             You can click on <em>Home</em> in the navbar to go back to the Homepage.
                         </ul>
                     </h2>
@@ -75,40 +81,43 @@
                 <div class="inputField">
                     <form id="inputTurnout">
                         <p>Total eligible voters:
-                        <input type="text" id="totalVoters" name="totalVoters" placeholder="0"></p>
-                        
+                            <input type="text" id="totalVoters" name="totalVoters" placeholder="0">
+                        </p>
+
                         <p>Voter turnout:
-                        <input type="text" id="voterTurnout" name="voterTurnout" placeholder="0"></p>
+                            <input type="text" id="voterTurnout" name="voterTurnout" placeholder="0">
+                        </p>
 
                         <p>Percentage of ineligible bulletins:
-                            <input type="text" id="ineligebleBulletins" name="ineligebleBulletins" placeholder="0"></p><br><br>
+                            <input type="text" id="ineligebleBulletins" name="ineligebleBulletins" placeholder="0">
+                        </p><br><br>
                     </form>
                     <form id="input">
-        
+
                         <input type="text" id="party1name" name="party1name" value="ГЕРБ">
                         <input type="text" id="party1result" name="party1result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party2name" name="party2name" value="ИТН">
                         <input type="text" id="party2result" name="party2result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party3name" name="party3name" value="ДБ">
                         <input type="text" id="party3result" name="party3result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party4name" name="party4name" value="ВЪЗРАЖДАНЕ">
                         <input type="text" id="party4result" name="party4result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party5name" name="party5name" value="БГ ВЪЗХОД">
                         <input type="text" id="party5result" name="party5result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party6name" name="party6name" value="ПП">
                         <input type="text" id="party6result" name="party6result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party7name" name="party7name" value="ДПС">
                         <input type="text" id="party7result" name="party7result" placeholder="0.00"><br><br>
-        
+
                         <input type="text" id="party8name" name="party8name" value="БСП">
                         <input type="text" id="party8result" name="party8result" placeholder="0.00"><br><br>
-        
+
                         <input type="submit" value="Calculate" id="calcButton" name="calcButton" class="btn">
                     </form>
                 </div>
@@ -125,15 +134,15 @@
                         </table>
                         <div id="chart">
                         </div>
-        
+
                     </div>
                     <div class="coalitionField">
-        
+
                         <table id="coalitionTable">
                         </table><br>
                         <div id="chartCoalition">
                         </div>
-        
+
                     </div>
                     <div class="buttons">
                         <input type="submit" value="Reset" id="resetButton" name="resetButton" class="btn"><br><br>
@@ -143,9 +152,9 @@
                             name="calcButton3" class="btn"><br>
                         <input type="submit" value="Calculate possible four party coalitions" id="calcButton4"
                             name="calcButton4" class="btn"><br>
-        
+
                     </div>
-        
+
                 </div>
             </div>
         </div>
