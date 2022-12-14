@@ -253,31 +253,6 @@ function calculate(
     }
     j=0
 
-    //deprecated
-    // let party1Seats = (240 * validPercentageArr[0]) / totalValidVote;
-    // let party1Percentage = (party1Seats / 240) * 100;
-
-    // let party2Seats = (240 * validPercentageArr[1]) / totalValidVote;
-    // let party2Percentage = (party2Seats / 240) * 100;
-
-    // let party3Seats = (240 * validPercentageArr[2]) / totalValidVote;
-    // let party3Percentage = (party3Seats / 240) * 100;
-
-    // let party4Seats = (240 * validPercentageArr[3]) / totalValidVote;
-    // let party4Percentage = (party4Seats / 240) * 100;
-
-    // let party5Seats = (240 * validPercentageArr[4]) / totalValidVote;
-    // let party5Percentage = (party5Seats / 240) * 100;
-
-    // let party6Seats = (240 * validPercentageArr[5]) / totalValidVote;
-    // let party6Percentage = (party6Seats / 240) * 100;
-
-    // let party7Seats = (240 * validPercentageArr[6]) / totalValidVote;
-    // let party7Percentage = (party7Seats / 240) * 100;
-
-    // let party8Seats = (240 * validPercentageArr[7]) / totalValidVote;
-    // let party8Percentage = (party8Seats / 240) * 100;
-
     let partyResults = [
         [party1name, Math.round(parliamentResArr[0]), Math.round(parliamentResArr[1]), party1],
         [party2name, Math.round(parliamentResArr[2]), Math.round(parliamentResArr[3]), party2],
@@ -289,19 +264,6 @@ function calculate(
         [party8name, Math.round(parliamentResArr[14]), Math.round(parliamentResArr[15]), party8],
         total = totalPercent
     ];
-
-    //deprecated
-    // let partyResults = [
-    //     [party1name, Math.round(party1Seats), Math.round(party1Percentage), party1],
-    //     [party2name, Math.round(party2Seats), Math.round(party2Percentage), party2],
-    //     [party3name, Math.round(party3Seats), Math.round(party3Percentage), party3],
-    //     [party4name, Math.round(party4Seats), Math.round(party4Percentage), party4],
-    //     [party5name, Math.round(party5Seats), Math.round(party5Percentage), party5],
-    //     [party6name, Math.round(party6Seats), Math.round(party6Percentage), party6],
-    //     [party7name, Math.round(party7Seats), Math.round(party7Percentage), party7],
-    //     [party8name, Math.round(party8Seats), Math.round(party8Percentage), party8],
-    //     total = totalPercent
-    // ];
 
     return partyResults
 }
