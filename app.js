@@ -222,6 +222,7 @@ function calculate(
     party8, party8name) {
 
     let totalPercent = party1 + party2 + party3 + party4 + party5 + party6 + party7 + party8;
+
     if (totalPercent > 100) {
         alert('total percentage result must be equal or less than 100');
         wrongInput = true;
@@ -230,6 +231,7 @@ function calculate(
         wrongInput = true;
     }
 
+    //copied
     let totalValidVote = 0;
     let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
     for (let i = 0; i < validPercentageArr.length; i++) {
@@ -240,43 +242,66 @@ function calculate(
         }
     }
 
+    let parliamentResArr = [];
+    const parliamentResArrLenght = 16;
+    let j = 0;
 
-    let party1Seats = (240 * validPercentageArr[0]) / totalValidVote;
-    let party1Percentage = (party1Seats / 240) * 100;
+    for (let i = 0; i < parliamentResArrLenght; i+=2) {
+        parliamentResArr[i] = (240 * validPercentageArr[j]) / totalValidVote;
+        parliamentResArr[i+1] = (parliamentResArr[i] / 240) * 100;
+        j++;
+    }
+    j=0
 
-    let party2Seats = (240 * validPercentageArr[1]) / totalValidVote;
-    let party2Percentage = (party2Seats / 240) * 100;
+    //deprecated
+    // let party1Seats = (240 * validPercentageArr[0]) / totalValidVote;
+    // let party1Percentage = (party1Seats / 240) * 100;
 
-    let party3Seats = (240 * validPercentageArr[2]) / totalValidVote;
-    let party3Percentage = (party3Seats / 240) * 100;
+    // let party2Seats = (240 * validPercentageArr[1]) / totalValidVote;
+    // let party2Percentage = (party2Seats / 240) * 100;
 
-    let party4Seats = (240 * validPercentageArr[3]) / totalValidVote;
-    let party4Percentage = (party4Seats / 240) * 100;
+    // let party3Seats = (240 * validPercentageArr[2]) / totalValidVote;
+    // let party3Percentage = (party3Seats / 240) * 100;
 
-    let party5Seats = (240 * validPercentageArr[4]) / totalValidVote;
-    let party5Percentage = (party5Seats / 240) * 100;
+    // let party4Seats = (240 * validPercentageArr[3]) / totalValidVote;
+    // let party4Percentage = (party4Seats / 240) * 100;
 
-    let party6Seats = (240 * validPercentageArr[5]) / totalValidVote;
-    let party6Percentage = (party6Seats / 240) * 100;
+    // let party5Seats = (240 * validPercentageArr[4]) / totalValidVote;
+    // let party5Percentage = (party5Seats / 240) * 100;
 
-    let party7Seats = (240 * validPercentageArr[6]) / totalValidVote;
-    let party7Percentage = (party7Seats / 240) * 100;
+    // let party6Seats = (240 * validPercentageArr[5]) / totalValidVote;
+    // let party6Percentage = (party6Seats / 240) * 100;
 
-    let party8Seats = (240 * validPercentageArr[7]) / totalValidVote;
-    let party8Percentage = (party8Seats / 240) * 100;
+    // let party7Seats = (240 * validPercentageArr[6]) / totalValidVote;
+    // let party7Percentage = (party7Seats / 240) * 100;
 
+    // let party8Seats = (240 * validPercentageArr[7]) / totalValidVote;
+    // let party8Percentage = (party8Seats / 240) * 100;
 
     let partyResults = [
-        [party1name, Math.round(party1Seats), Math.round(party1Percentage), party1],
-        [party2name, Math.round(party2Seats), Math.round(party2Percentage), party2],
-        [party3name, Math.round(party3Seats), Math.round(party3Percentage), party3],
-        [party4name, Math.round(party4Seats), Math.round(party4Percentage), party4],
-        [party5name, Math.round(party5Seats), Math.round(party5Percentage), party5],
-        [party6name, Math.round(party6Seats), Math.round(party6Percentage), party6],
-        [party7name, Math.round(party7Seats), Math.round(party7Percentage), party7],
-        [party8name, Math.round(party8Seats), Math.round(party8Percentage), party8],
+        [party1name, Math.round(parliamentResArr[0]), Math.round(parliamentResArr[1]), party1],
+        [party2name, Math.round(parliamentResArr[2]), Math.round(parliamentResArr[3]), party2],
+        [party3name, Math.round(parliamentResArr[4]), Math.round(parliamentResArr[5]), party3],
+        [party4name, Math.round(parliamentResArr[6]), Math.round(parliamentResArr[7]), party4],
+        [party5name, Math.round(parliamentResArr[8]), Math.round(parliamentResArr[9]), party5],
+        [party6name, Math.round(parliamentResArr[10]), Math.round(parliamentResArr[11]), party6],
+        [party7name, Math.round(parliamentResArr[12]), Math.round(parliamentResArr[13]), party7],
+        [party8name, Math.round(parliamentResArr[14]), Math.round(parliamentResArr[15]), party8],
         total = totalPercent
     ];
+
+    //deprecated
+    // let partyResults = [
+    //     [party1name, Math.round(party1Seats), Math.round(party1Percentage), party1],
+    //     [party2name, Math.round(party2Seats), Math.round(party2Percentage), party2],
+    //     [party3name, Math.round(party3Seats), Math.round(party3Percentage), party3],
+    //     [party4name, Math.round(party4Seats), Math.round(party4Percentage), party4],
+    //     [party5name, Math.round(party5Seats), Math.round(party5Percentage), party5],
+    //     [party6name, Math.round(party6Seats), Math.round(party6Percentage), party6],
+    //     [party7name, Math.round(party7Seats), Math.round(party7Percentage), party7],
+    //     [party8name, Math.round(party8Seats), Math.round(party8Percentage), party8],
+    //     total = totalPercent
+    // ];
 
     return partyResults
 }
@@ -294,58 +319,47 @@ function calculateForVoters(
 
     //needs validation for correct input
 
-    let totalValidVotes = 0;
-    let totalLostVotes = 0;
-    const minimumVotesPastPost = totalEligebleVotes * (barrierForEntry / 100);
+    let totalPercent = party1 + party2 + party3 + party4 + party5 + party6 + party7 + party8;
 
-    let partyVotersArr = [party1, party2, party3, party4, party5, party6, party7, party8];
-    for (let i = 0; i < partyVotersArr.length; i++) {
-        if (partyVotersArr[i] >= minimumVotesPastPost) {
-            totalValidVotes += partyVotersArr[i];
+    let totalValidVote = 0;
+    let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
+    for (let i = 0; i < validPercentageArr.length; i++) {
+        if (validPercentageArr[i] < barrierForEntry) {
+            validPercentageArr[i] = 0;
         } else {
-            totalLostVotes += partyVotersArr[i];
-            partyVotersArr[i] = 0;
+            totalValidVote += validPercentageArr[i];
         }
     }
-    //calculates minimum number of votes to past the (4%) barrier for entry
 
-    const party1Share = (partyVotersArr[0] / totalValidVotes) * 100;
-    const party1Seats = (party1Share * 240)/100;
+    let parliamentResArr = [];
+    const parliamentResArrLenght = 16;
+    let secondIterator = 0;
 
-    const party2Share = (partyVotersArr[1]  / totalValidVotes) * 100;
-    const party2Seats = (party2Share * 240)/100;
+    for (let i = 0; i < parliamentResArrLenght; i+=2) {
+        parliamentResArr[i] = (240 * validPercentageArr[secondIterator]) / totalValidVote;
+        parliamentResArr[i+1] = (parliamentResArr[i] / 240) * 100;
+        secondIterator++;
+    }
+    secondIterator=1
 
-    const party3Share = (partyVotersArr[2]  / totalValidVotes) * 100;
-    const party3Seats = (party3Share * 240)/100;
-
-    const party4Share = (partyVotersArr[3]  / totalValidVotes) * 100;
-    const party4Seats = (party4Share * 240)/100;
-
-    const party5Share = (partyVotersArr[4]  / totalValidVotes) * 100;
-    const party5Seats = (party5Share * 240)/100;
-
-    const party6Share = (partyVotersArr[5]  / totalValidVotes) * 100;
-    const party6Seats = (party6Share * 240)/100;
-
-    const party7Share = (partyVotersArr[6]  / totalValidVotes) * 100;
-    const party7Seats = (party7Share * 240)/100;
-
-    const party8Share = (partyVotersArr[7]  / totalValidVotes) * 100;
-    const party8Seats = (party8Share * 240)/100;
-
-    console.log(party1Share);
-    console.log(party1Seats);
+    votersPerPartyArr = [];
+    votersPerPartyArrLenght = 8;
+    for (let index = 0; index < votersPerPartyArrLenght; index++) {
+        votersPerPartyArr[index] = totalEligebleVotes*(parliamentResArr[secondIterator]/100);
+        secondIterator += 2;
+    }
+    secondIterator=0;
 
     let partyResults = [
-        [party1name, Math.round(party1Seats), Math.round(party1Share), party1],
-        [party2name, Math.round(party2Seats), Math.round(party2Share), party2],
-        [party3name, Math.round(party3Seats), Math.round(party3Share), party3],
-        [party4name, Math.round(party4Seats), Math.round(party4Share), party4],
-        [party5name, Math.round(party5Seats), Math.round(party5Share), party5],
-        [party6name, Math.round(party6Seats), Math.round(party6Share), party6],
-        [party7name, Math.round(party7Seats), Math.round(party7Share), party7],
-        [party8name, Math.round(party8Seats), Math.round(party8Share), party8],
-        totalLostVotes = totalLostVotes
+        [party1name, Math.round(parliamentResArr[0]), Math.round(parliamentResArr[1]), Math.round(votersPerPartyArr[0])],
+        [party2name, Math.round(parliamentResArr[2]), Math.round(parliamentResArr[3]), Math.round(votersPerPartyArr[1])],
+        [party3name, Math.round(parliamentResArr[4]), Math.round(parliamentResArr[5]), Math.round(votersPerPartyArr[2])],
+        [party4name, Math.round(parliamentResArr[6]), Math.round(parliamentResArr[7]), Math.round(votersPerPartyArr[3])],
+        [party5name, Math.round(parliamentResArr[8]), Math.round(parliamentResArr[9]), Math.round(votersPerPartyArr[4])],
+        [party6name, Math.round(parliamentResArr[10]), Math.round(parliamentResArr[11]), Math.round(votersPerPartyArr[5])],
+        [party7name, Math.round(parliamentResArr[12]), Math.round(parliamentResArr[13]), Math.round(votersPerPartyArr[6])],
+        [party8name, Math.round(parliamentResArr[14]), Math.round(parliamentResArr[15]), Math.round(votersPerPartyArr[7])],
+        total = totalPercent
     ];
 
     return partyResults;
