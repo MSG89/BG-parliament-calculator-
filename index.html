@@ -23,9 +23,9 @@
                 <div class="dropdown">
                     <div class="dropbtn">Tools</div>
                     <div class="dropdown-content">
-                        <div id="calcPercentage">Calculator based on percentage of votes won</div>
-                        <div id="calcAbsoluteNum">Calculator based on absolute voters won</div>
-                        <div id="calcSeatShare">Calculator based on parliament seats share</div>
+                        <div id="calcPercentage">Калкулатор спечелен относителен изборен вот</div>
+                        <div id="calcAbsoluteNum">Калкулатор спечелен абсолютен изборен вот</div>
+                        <div id="calcSeatShare">Калкулатор спечелен дял места в парламента</div>
                     </div>
                 </div>
             </li>
@@ -38,71 +38,62 @@
                 <section id="Home">
                     <h2>
                         <ul>
-                            <p>Welcome to the Bulgarian parliament elections calculator website !</p>
+                            <p>Добре дошли в Калкулатор Български парламентарни избори !</p>
 
-                            You can use one of our calculators to dry run elections for the Bulgarian national assembly
-                            with different inputs.<br>
-                            Please hover your cursor over <em>Tools</em> button in the navbar and select one of the
-                            calculators.
+                            Може да използвате който и да е от калкулаторите ни за да проигравате различни изборни резултати и последствията от тях.<br>
+                            Преместете курсора на бутон <em>Tools</em> в навигационното меню за да достъпите различните калкулатори.
                         </ul>
                     </h2>
                 </section>
                 <section id="ToolCalcPercentage">
                     <h2>
                         <ul>
-                            <p>Bulgarian parliament calculator based on percentage of votes won per party</p>
+                            <p>Калкулатор спечелен относителен изборен вот</p>
 
-                            In the following field you can input the parties you want to dry run an election.<br>
-                            You can either use the default ones or change them to your preference.<br>
-                            Total percentage has to be less than 100 and at least one party has to have more than 4
-                            percent.<br>
-                            Once ready, click calculate button to get the results for which party gets in the
-                            parliament.<br>
-                            Use the additional buttons to either check for possible coalitions or reset view back to the
-                            initial screen.<br>
-                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
+                            С този калкулатор може да проигравате избори според изборните резултати на всяка партия.<br>
+                            Може да използвате партиите по подразбиране или да ги промените по ваш избор.<br>
+                            Общите проценти трябва да са най-малко 4 и не повече от 100<br>
+                            След като сте въвели данните натиснете бутон Calculate за да видите разпределението на местата в парламента според изборния резултат. <br>
+                            Използвайте допълнителните бутони за да видите възможните коалиции или бутона reset за да нулира калкулатора.<br>
+                            Натиснете бутона <em>Home</em> в навигационното меню за да се върнете на началната страница.
                         </ul>
                     </h2>
                 </section>
                 <section id="ToolCalcVoters">
                     <h2>
                         <ul>
-                            <p>Bulgarian parliament calculator based on percentage of voters won per party</p>
+                            <p>Калкулатор спечелен дял места в парламента</p>
+                            Може да използвате партиите по подразбиране или да ги промените по ваш избор.<br>
+                            Общите проценти трябва да са най-малко 4 и не повече от 100.<br>
+                            След като сте въвели данните натиснете бутон Calculate за да видите разпределението на местата в парламента според изборния резултат. <br>
+                            Ще получите разпределението на партиите в парламента както и броя гласове спечелени от всяка партия.
+                            Използвайте допълнителните бутони за да видите възможните коалиции или бутона reset за да нулира калкулатора.<br>
+                            Натиснете бутона <em>Home</em> в навигационното меню за да се върнете на началната страница.
 
-                            Calculator, input total voters, turnout, ineligible ballots and voting share for each party.<br>
-                            calculates parliament seats share won and votes cast for each party<br>
-                            INSTRUCTIONS<br>
-                            INSTRUCTIONS<br>
-                            INSTRUCTIONS<br>
-                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
                         </ul>
                     </h2>
                 </section>
                 <section id="ToolCalcSeatShare">
                     <h2>
                         <ul>
-                            <p>Bulgarian parliament calculator based on percentage of seats share</p>
-
-                            Calculator, inputs seats in parliament based on share a party has<br>
-                            INSTRUCTIONS<br>
-                            INSTRUCTIONS<br>
-                            INSTRUCTIONS<br>
-                            INSTRUCTIONS<br>
-                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
+                            <p>Калкулатор спечелен дял места в парламента</p>
+                            С този калкулатор директно въвеждате относителния дял на всяка партия в парламента.<br>
+                            С него можете да проверите според разпределението на партиите възможните мнозинства.<br>
+                            Натиснете бутона <em>Home</em> в навигационното меню за да се върнете на началната страница.<br>
                         </ul>
                     </h2>
                 </section>
                 <div class="inputField">
                     <form id="inputTurnout">
-                        <p>Total eligible voters:
+                        <p>Общ брой потенциални избиратели:
                             <input type="text" id="totalVoters" name="totalVoters" placeholder="0">
                         </p>
 
-                        <p>Voter turnout:
+                        <p>Избирателан активност в проценти:
                             <input type="text" id="voterTurnout" name="voterTurnout" placeholder="0">
                         </p>
 
-                        <p>Percentage of ineligible bulletins:
+                        <p>Процент невалидни бюлетини:
                             <input type="text" id="ineligebleBulletins" name="ineligebleBulletins" placeholder="0">
                         </p><br><br>
                     </form>
