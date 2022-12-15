@@ -1,6 +1,7 @@
 
 const toolCalcPercentage = document.getElementById('calcPercentage');
 const toolCalcVoters = document.getElementById('calcAbsoluteNum');
+const toolCalcSeatShare = document.getElementById('calcSeatShare')
 const homeViewBtn = document.getElementById('HomeBtn');
 
 const calcButton = document.getElementById('calcButton');
@@ -68,6 +69,13 @@ toolCalcVoters.addEventListener('click', (e) => {
     calculatorVoterTurnoutView();
 })
 
+//SeatsShareCalculatorView
+toolCalcSeatShare.addEventListener('click', (e) => {
+    e.preventDefault();
+    clearFields();
+    calculatorParliamentSeatsShareView();
+})
+
 calcButton2.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('chartCoalition').innerHTML = '';
@@ -126,7 +134,7 @@ function calculatePartyResults() {
         let party8result = Number(party8El.value);
         const party8name = party8nameEl.value;
 
-        if (currentCalc === 1) {
+        if (currentCalc === 1 || currentCalc === 3) {
             // for voting results calc below
             //returning arr of arr - partyNUM [partyName, seats, percentage]
             partyResults = calculate(
@@ -231,13 +239,12 @@ function calculate(
         wrongInput = true;
     }
 
-    //copied
     let totalValidVote = 0;
     let validPercentageArr = [party1, party2, party3, party4, party5, party6, party7, party8];
     for (let i = 0; i < validPercentageArr.length; i++) {
-        if (validPercentageArr[i] < barrierForEntry) {
+        if (validPercentageArr[i] < barrierForEntry && currentCalc === 1) {
             validPercentageArr[i] = 0;
-        } else {
+        }else{
             totalValidVote += validPercentageArr[i];
         }
     }
@@ -624,12 +631,14 @@ function homeView() {
     document.getElementById('Home').style.display = 'block';
     document.getElementById('ToolCalcPercentage').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.getElementById('ToolCalcSeatShare').style.display = 'none';
     document.querySelector('.inputField').style.display = 'none';
     currentCalc = 0;
 }
 function calculatorVotingResView() {
     document.getElementById('Home').style.display = 'none';
     document.getElementById('ToolCalcPercentage').style.display = 'inline';
+    document.getElementById('ToolCalcSeatShare').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'none';
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('inputTurnout').style.display = 'none';
@@ -638,8 +647,18 @@ function calculatorVotingResView() {
 function calculatorVoterTurnoutView() {
     document.getElementById('Home').style.display = 'none';
     document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('ToolCalcSeatShare').style.display = 'none';
     document.getElementById('ToolCalcVoters').style.display = 'inline';
     document.querySelector('.inputField').style.display = 'inline';
     document.getElementById('inputTurnout').style.display = 'inline';
     currentCalc = 2;
+}
+function calculatorParliamentSeatsShareView() {
+    document.getElementById('Home').style.display = 'none';
+    document.getElementById('ToolCalcPercentage').style.display = 'none';
+    document.getElementById('ToolCalcVoters').style.display = 'none';
+    document.getElementById('ToolCalcSeatShare').style.display = 'inline';
+    document.querySelector('.inputField').style.display = 'inline';
+    document.getElementById('inputTurnout').style.display = 'none';
+    currentCalc = 3;
 }

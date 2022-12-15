@@ -70,6 +70,9 @@ nav li:hover {
 #ToolCalcVoters{
     display:none;
 }
+#ToolCalcSeatShare{
+    display: none;
+}
 
 /* #interfaceBackground{
     background-color: green;

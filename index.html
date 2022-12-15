@@ -26,6 +26,7 @@
                     <div class="dropdown-content">
                         <div id="calcPercentage">Calculator based on percentage of votes won</div>
                         <div id="calcAbsoluteNum">Calculator based on absolute voters won</div>
+                        <div id="calcSeatShare">Calculator based on parliament seats share</div>
                     </div>
                 </div>
             </li>
@@ -69,7 +70,21 @@
                         <ul>
                             <p>Bulgarian parliament calculator based on percentage of voters won per party</p>
 
+                            Calculator, input total voters, turnout, ineligible ballots and voting share for each party.<br>
+                            calculates parliament seats share won and votes cast for each party<br>
                             INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            INSTRUCTIONS<br>
+                            You can click on <em>Home</em> in the navbar to go back to the Homepage.
+                        </ul>
+                    </h2>
+                </section>
+                <section id="ToolCalcSeatShare">
+                    <h2>
+                        <ul>
+                            <p>Bulgarian parliament calculator based on percentage of seats share</p>
+
+                            Calculator, inputs seats in parliament based on share a party has<br>
                             INSTRUCTIONS<br>
                             INSTRUCTIONS<br>
                             INSTRUCTIONS<br>
@@ -94,28 +109,28 @@
                     </form>
                     <form id="input">
 
-                        <input type="text" id="party1name" name="party1name" value="ГЕРБ">
+                        <input type="text" id="party1name" name="party1name" value="БГ ВЪЗХОД">
                         <input type="text" id="party1result" name="party1result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party2name" name="party2name" value="ИТН">
+                        <input type="text" id="party2name" name="party2name" value="БСП">
                         <input type="text" id="party2result" name="party2result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party3name" name="party3name" value="ДБ">
+                        <input type="text" id="party3name" name="party3name" value="ВЪЗРАЖДАНЕ">
                         <input type="text" id="party3result" name="party3result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party4name" name="party4name" value="ВЪЗРАЖДАНЕ">
+                        <input type="text" id="party4name" name="party4name" value="ГЕРБ">
                         <input type="text" id="party4result" name="party4result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party5name" name="party5name" value="БГ ВЪЗХОД">
+                        <input type="text" id="party5name" name="party5name" value="ДБ">
                         <input type="text" id="party5result" name="party5result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party6name" name="party6name" value="ПП">
+                        <input type="text" id="party6name" name="party6name" value="ДПС">
                         <input type="text" id="party6result" name="party6result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party7name" name="party7name" value="ДПС">
+                        <input type="text" id="party7name" name="party7name" value="ПП">
                         <input type="text" id="party7result" name="party7result" placeholder="0.00"><br><br>
 
-                        <input type="text" id="party8name" name="party8name" value="БСП">
+                        <input type="text" id="party8name" name="party8name" value="ИТН">
                         <input type="text" id="party8result" name="party8result" placeholder="0.00"><br><br>
 
                         <input type="submit" value="Calculate" id="calcButton" name="calcButton" class="btn">
@@ -161,7 +176,7 @@
 
     </main>
     <footer>
-        <p>Copyright MSG89 2022. All rights reserved.</p>
+        <p>Copyright MSG89 2022. All rights reserved. v 1.0</p>
     </footer>
 
     <script src="app.js"></script>
