@@ -627,6 +627,8 @@ function drawPieChartCoalition(coalitionName, coalitionSeats) {
     });
 }
 
+
+//views
 function homeView() {
     document.getElementById('Home').style.display = 'block';
     document.getElementById('ToolCalcPercentage').style.display = 'none';
