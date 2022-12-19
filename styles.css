@@ -96,6 +96,9 @@ h2 {
 #input{
     padding-left: 40px;
 }
+#inputTurnout p{
+    padding-left:40px;
+}
 .inputField {
     display: none;
     padding-left:40px;
