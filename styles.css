@@ -93,6 +93,9 @@ h2 {
     margin: 0px;
 }
 
+#input{
+    padding-left: 40px;
+}
 .inputField {
     display: none;
     padding-left:40px;
@@ -100,6 +103,7 @@ h2 {
 
 .results {
     display: block;
+    padding-left:30px;
 }
 
 .resultField {
@@ -179,7 +183,7 @@ footer {
     display: none;
     position: absolute;
     background-color: grey;
-    width: 500%;
+    width: 200%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     font-size: 18px;
     z-index: 1;
